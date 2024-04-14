@@ -149,6 +149,16 @@ and install our app:
 ```bash
 nest new api
 ```
+
+
+
+## 4. Dockerize it!
+What we want to achieve now is to dockerize the entire application using docker-compose.
+Ultimately, we will have three containers:
+- MySQL Database
+- NestJS API
+- NextJS Frontend
+
 go to api directory:
 
 `cd api`
@@ -168,8 +178,6 @@ Add following code:
 `# Copy the package.json and package-lock.json`
 `COPY package*.json ./`
 
-  
-
 `# Install NestJS dependencies`
 `RUN npm install`
 
@@ -182,15 +190,12 @@ Add following code:
  ` # Command to run your NestJS application`
 `CMD ["npm", "run", "start:dev"]`
 
-## 4. Dockerize it!
-What we want to achieve now is to dockerize the entire application using docker-compose.
-Ultimately, we will have three containers:
-- MySQL Database
-- NestJS API
-- NextJS Frontend
-
+### Yeah, looks great! Let's wrap it by Docker Compose now.
+Go to project root folder:
+`cd ..`
+Add new docker
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTU3OTE3NTUsLTk3MzAxMDQ5MSwxNz
-MwODU0MjQ4XX0=
+eyJoaXN0b3J5IjpbNzk1MzY1Mzk4LC05NzMwMTA0OTEsMTczMD
+g1NDI0OF19
 -->
