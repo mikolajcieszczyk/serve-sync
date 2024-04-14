@@ -139,7 +139,10 @@ If everything went well, you should get the following result:
 
 Let's leave the database topic for now, we'll come back to it in later steps.
 
-## 3. Dockerize it!
+## Create new NestJS App
+Create root directory in your local machine and call
+
+## 4. Dockerize it!
 What we want to achieve now is to dockerize the entire application using docker-compose.
 Ultimately, we will have three containers:
 - MySQL Database
@@ -148,6 +151,6 @@ Ultimately, we will have three containers:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTAzMDEzNjY0LC05NzMwMTA0OTEsMTczMD
-g1NDI0OF19
+eyJoaXN0b3J5IjpbMTk2MTA3MjA0NywtOTczMDEwNDkxLDE3Mz
+A4NTQyNDhdfQ==
 -->
