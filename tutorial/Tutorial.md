@@ -137,7 +137,6 @@ If everything went well, you should get the following result:
 
 
 
-# 2. NestJS
 
   
 
@@ -147,5 +146,5 @@ If everything went well, you should get the following result:
 
 # 3. NextJS
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczMDg1NDI0OF19
+eyJoaXN0b3J5IjpbMTM2Mjc3ODQ1OCwxNzMwODU0MjQ4XX0=
 -->
