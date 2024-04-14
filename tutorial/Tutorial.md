@@ -145,7 +145,13 @@ Run:
 ````bash
 npm i -g @nestjs/cli
 ````
-and ins
+and install our app:
+```bash
+nest new api
+```
+go to api directory:
+`cd api`
+add new file
 
 ## 4. Dockerize it!
 What we want to achieve now is to dockerize the entire application using docker-compose.
@@ -156,6 +162,6 @@ Ultimately, we will have three containers:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2NDA0MjU1NSwtOTczMDEwNDkxLDE3Mz
-A4NTQyNDhdfQ==
+eyJoaXN0b3J5IjpbLTEyMjc4NTI3MDksLTk3MzAxMDQ5MSwxNz
+MwODU0MjQ4XX0=
 -->
