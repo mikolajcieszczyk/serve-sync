@@ -140,7 +140,12 @@ If everything went well, you should get the following result:
 Let's leave the database topic for now, we'll come back to it in later steps.
 
 ## Create new NestJS App
-Create root directory in your local machine and call
+Create root directory in your local machine and call it `serve_sync` or whatever you want.
+Run:
+````bash
+npm i -g @nestjs/cli
+````
+and ins
 
 ## 4. Dockerize it!
 What we want to achieve now is to dockerize the entire application using docker-compose.
@@ -151,6 +156,6 @@ Ultimately, we will have three containers:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2MTA3MjA0NywtOTczMDEwNDkxLDE3Mz
+eyJoaXN0b3J5IjpbLTc2NDA0MjU1NSwtOTczMDEwNDkxLDE3Mz
 A4NTQyNDhdfQ==
 -->
