@@ -159,45 +159,28 @@ add new Dockerfile and call it `Dockerfile`
 
 Add following code:
 
-`
+`#Use official Node.js 16 image as the base image`
+`FROM node:16`
 
-FROM node:16
+`# Set the working directory in the container`
+`WORKDIR /app`
 
-  
-
-# Set the working directory in the container
-
-WORKDIR /app
-
-  
-
-# Copy the package.json and package-lock.json
-
-COPY package*.json ./
+`# Copy the package.json and package-lock.json`
+`COPY package*.json ./`
 
   
 
-# Install NestJS dependencies
+`# Install NestJS dependencies`
+`RUN npm install`
 
-RUN npm install
+`# Copy the entire project directory into the container`
+`COPY . .`
 
-  
+`# Expose port 3201`
+`EXPOSE 3201`
 
-# Copy the entire project directory into the container
-
-COPY . .
-
-  
-
-# Expose port 3201
-
-EXPOSE 3201
-
-  
-
-# Command to run your NestJS application
-
-CMD ["npm", "run", "start:dev"]
+ ` # Command to run your NestJS application`
+`CMD ["npm", "run", "start:dev"]`
 
 ## 4. Dockerize it!
 What we want to achieve now is to dockerize the entire application using docker-compose.
@@ -208,6 +191,6 @@ Ultimately, we will have three containers:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwMTE3MDAyOCwtOTczMDEwNDkxLDE3Mz
-A4NTQyNDhdfQ==
+eyJoaXN0b3J5IjpbLTE4MTU3OTE3NTUsLTk3MzAxMDQ5MSwxNz
+MwODU0MjQ4XX0=
 -->
