@@ -8,7 +8,7 @@ srodowisko
 spis tresci
   
 
-# 1. Installing MySQL
+## 1. Install MySQL
 
 **If you are familiar with it/you have MySQL installed on your device, you can skip this step**
 
@@ -76,7 +76,7 @@ Load permission changes so that they are immediately reflected by the MySQL serv
 
 If your credentials are correct, you should be logged in to the MySQL console and you will see the mysql> prompt.
 
-## Create a Database
+## 2. Create a Database
 
 Once logged into MySQL, you can create a new database using the SQL command CREATE DATABASE database_name;. For example, if you want to name your database "myapp", you would execute the command CREATE DATABASE myapp;.
 
@@ -138,5 +138,6 @@ If everything went well, you should get the following result:
 `+------------+--------------+------+-----+---------+----------------+`
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3MzAxMDQ5MSwxNzMwODU0MjQ4XX0=
+eyJoaXN0b3J5IjpbLTE2MjI3NjYzNDQsLTk3MzAxMDQ5MSwxNz
+MwODU0MjQ4XX0=
 -->
