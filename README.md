@@ -19,7 +19,7 @@ Start managing your tennis courts with ServeSync today! 🥎
 3. **Navigate to Project Directory**: Change directory to the ServeSync project folder:
 
 ```bash
-  cd serve_sync
+  cd serve-sync
 ```
 
 4. **Build and Run Docker Containers**: Run the following command to build and start the Docker containers:
