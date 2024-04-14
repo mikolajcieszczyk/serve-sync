@@ -192,10 +192,41 @@ Add following code:
 
 ### Yeah, looks great! Let's wrap it by Docker Compose now.
 Go to project root folder:
+
 `cd ..`
-Add new docker
+
+Add new docker-compose file:
+
+`touch docker-compose.yaml`
+
+And add the following:
+
+
+`version:  "3.7"`
+services:
+db:
+image:  mysql
+container_name:  mysql_db
+restart:  always
+environment:
+MYSQL_ROOT_PASSWORD:  ${MYSQL_PASSWORD}
+MYSQL_DATABASE:  ${MYSQL_DATABASE}
+ports:
+-  "3200:3306"
+volumes:
+-  ./mysql-data:/var/lib/mysql
+api:
+build:
+context:  ./api
+dockerfile:  Dockerfile
+container_name:  api
+restart:  always
+ports:
+-  "${API_PORT}:${API_PORT}"
+depends_on:
+-  db`
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzk1MzY1Mzk4LC05NzMwMTA0OTEsMTczMD
+eyJoaXN0b3J5IjpbNzI3NjA5Nzc0LC05NzMwMTA0OTEsMTczMD
 g1NDI0OF19
 -->
