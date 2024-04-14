@@ -13,13 +13,13 @@ Start managing your tennis courts with ServeSync today! 🥎
 2. **Clone Repository**: Clone the ServeSync repository to your local machine:
 
 ```bash
-  git clone https://github.com/your-username/servesync.git
+  git clone https://github.com/mikolajcieszczyk/serve-sync.git
 ```
 
 3. **Navigate to Project Directory**: Change directory to the ServeSync project folder:
 
 ```bash
-  cd servesync
+  cd serve_sync
 ```
 
 4. **Build and Run Docker Containers**: Run the following command to build and start the Docker containers:
