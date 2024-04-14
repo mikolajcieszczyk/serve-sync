@@ -137,7 +137,17 @@ If everything went well, you should get the following result:
 `| phone      | varchar(20)  | YES  |     | NULL    |                |`
 `+------------+--------------+------+-----+---------+----------------+`
 
+Let's leave the database topic for now, we'll come back to it in later steps.
+
+## 3. Dockerize it!
+What we want to achieve now is to dockerize the entire application using docker-compose.
+Ultimately, we will have three containers:
+- MySQL Database
+- NestJS API
+- NextJS Frontend
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjI3NjYzNDQsLTk3MzAxMDQ5MSwxNz
-MwODU0MjQ4XX0=
+eyJoaXN0b3J5IjpbOTAzMDEzNjY0LC05NzMwMTA0OTEsMTczMD
+g1NDI0OF19
 -->
