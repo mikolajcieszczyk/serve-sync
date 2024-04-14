@@ -227,7 +227,9 @@ And add the following:
 
 **To run our app just type**:
 `docker-compose up --build`
+
+After visiting http://localhost:3201 in your browser, you should see "Hello World!"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk5MzYwNzUxLC05NzMwMTA0OTEsMTczMD
+eyJoaXN0b3J5IjpbODgwMjU5Njg1LC05NzMwMTA0OTEsMTczMD
 g1NDI0OF19
 -->
