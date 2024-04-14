@@ -224,8 +224,10 @@ And add the following:
 ` -  "${API_PORT}:${API_PORT}"`
 ` depends_on:`
 ` -  db`
-**To run our app just type**
+
+**To run our app just type**:
+`docker-compose up --build`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQxOTE1MDUsLTk3MzAxMDQ5MSwxNzMwOD
-U0MjQ4XX0=
+eyJoaXN0b3J5IjpbOTk5MzYwNzUxLC05NzMwMTA0OTEsMTczMD
+g1NDI0OF19
 -->
