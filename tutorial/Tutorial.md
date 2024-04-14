@@ -20,7 +20,7 @@ spis tresci
 
 `sudo apt-get install mysql-server mysql-client`
 
-3. **Start MySQL Server**: After installing MySQL, you need to start the server. On most operating systems, you can do this through a system service or directly from the command line.
+2. **Start MySQL Server**: After installing MySQL, you need to start the server. On most operating systems, you can do this through a system service or directly from the command line.
 
 To check whether the MySQL server has been started:
 
@@ -76,7 +76,9 @@ Load permission changes so that they are immediately reflected by the MySQL serv
 
 If your credentials are correct, you should be logged in to the MySQL console and you will see the mysql> prompt.
 
-4. **Create a Database**: Once logged into MySQL, you can create a new database using the SQL command CREATE DATABASE database_name;. For example, if you want to name your database "myapp", you would execute the command CREATE DATABASE myapp;.
+## Create a Database
+
+Once logged into MySQL, you can create a new database using the SQL command CREATE DATABASE database_name;. For example, if you want to name your database "myapp", you would execute the command CREATE DATABASE myapp;.
 
 To maintain consistency in the later parts of the tutorial, let's name our database: "serve_sync", so the command should look like this:
 
@@ -135,16 +137,6 @@ If everything went well, you should get the following result:
 `| phone      | varchar(20)  | YES  |     | NULL    |                |`
 `+------------+--------------+------+-----+---------+----------------+`
 
-
-
-
-  
-
-  
-
-  
-
-# 3. NextJS
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2Mjc3ODQ1OCwxNzMwODU0MjQ4XX0=
+eyJoaXN0b3J5IjpbLTk3MzAxMDQ5MSwxNzMwODU0MjQ4XX0=
 -->
