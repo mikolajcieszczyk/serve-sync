@@ -201,32 +201,31 @@ Add new docker-compose file:
 
 And add the following:
 
-
 `version:  "3.7"`
-services:
-db:
-image:  mysql
-container_name:  mysql_db
-restart:  always
-environment:
-MYSQL_ROOT_PASSWORD:  ${MYSQL_PASSWORD}
-MYSQL_DATABASE:  ${MYSQL_DATABASE}
-ports:
--  "3200:3306"
-volumes:
--  ./mysql-data:/var/lib/mysql
-api:
-build:
-context:  ./api
-dockerfile:  Dockerfile
-container_name:  api
-restart:  always
-ports:
--  "${API_PORT}:${API_PORT}"
-depends_on:
--  db`
-
+`services:`
+` db:`
+` image:  mysql`
+` container_name:  mysql_db`
+` restart:  always`
+` environment:`
+` MYSQL_ROOT_PASSWORD:  ${MYSQL_PASSWORD}`
+` MYSQL_DATABASE:  ${MYSQL_DATABASE}`
+` ports:`
+` -  "3200:3306"`
+` volumes:`
+` -  ./mysql-data:/var/lib/mysql`
+` api:`
+` build:`
+` context:  ./api`
+` dockerfile:  Dockerfile`
+` container_name:  api`
+` restart:  always`
+` ports:`
+` -  "${API_PORT}:${API_PORT}"`
+` depends_on:`
+` -  db`
+**To run our app just type**
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzI3NjA5Nzc0LC05NzMwMTA0OTEsMTczMD
-g1NDI0OF19
+eyJoaXN0b3J5IjpbODQxOTE1MDUsLTk3MzAxMDQ5MSwxNzMwOD
+U0MjQ4XX0=
 -->
