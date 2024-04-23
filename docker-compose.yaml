@@ -30,6 +30,6 @@ services:
     container_name: frontend
     restart: always
     ports:
-      - "3202:3000" # Mapowanie portu kontenera 3000 na port hosta 3202
+      - "3202:3000"
     depends_on:
       - api
