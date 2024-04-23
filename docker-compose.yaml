@@ -1,16 +1,18 @@
 version: "3.7"
+
 services:
-  db:
-    image: mysql
-    container_name: mysql_db
-    restart: always
+  mysql_db:
+    image: mysql/mysql-server:8.0.28
+    container_name: my_sql_container
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-    ports:
-      - "3200:3306"
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
 
   api:
     build:
@@ -21,7 +23,7 @@ services:
     ports:
       - "3201:3201"
     depends_on:
-      - db
+      - mysql_db
 
   frontend:
     build:
@@ -33,3 +35,6 @@ services:
       - "3202:3000"
     depends_on:
       - api
+
+volumes:
+  mysql_data:
