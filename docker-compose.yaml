@@ -19,6 +19,17 @@ services:
     container_name: api
     restart: always
     ports:
-      - "${API_PORT}:${API_PORT}"
+      - "3201:3201"
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "3202:3000" # Mapowanie portu kontenera 3000 na port hosta 3202
+    depends_on:
+      - api
