@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 interface IUser {
-  userId: number;
+  id: number;
   username: string;
   password: string;
 }
@@ -12,12 +12,12 @@ export type User = IUser;
 export class UsersService {
   private readonly users = [
     {
-      userId: 1,
+      id: 1,
       username: 'miki',
       password: 'miki',
     },
     {
-      userId: 2,
+      id: 2,
       username: 'maria',
       password: 'maria',
     },
