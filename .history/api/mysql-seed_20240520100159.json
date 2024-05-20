@@ -1,0 +1,22 @@
+{
+  "type": "mysql",
+  "host": "sync-mysql",
+  "port": 3306,
+  "username": "root",
+  "password": "Mysztosczur23!@",
+  "database": "serve_sync",
+  "migrationsRun": false,
+  "synchronize": false,
+  "logging": ["error", "warn"],
+  "entities": [
+    "./dist/**/entities/**/*.entity{.ts,.js}",
+    "./dist/**/entities/**/*.entity{.ts,.js}"
+  ],
+	"migrations": [
+		"./dist/seeds/**/*{.ts,.js}"
+	],
+  "cache": false,
+  "cli": {
+    "migrationsDir": "./src/migrations"
+  }
+}

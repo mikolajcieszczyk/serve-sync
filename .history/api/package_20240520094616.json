@@ -19,10 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
 		"typeorm:mysql": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./mysql.json",
-		"typeorm:mysql:migration": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./mysql-migration.json",
-		"typeorm:mysql:seed": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./mysql-seed.json",
-		"typeorm:mysql:migration:create": "npm run typeorm:mysql -- migration:create",
-		"typeorm:mysql:migration:run": "npm run typeorm:mysql:migration -- migration:run && npm run typeorm:mysql:seed -- migration:run"
+		"typeorm:mysql:migration:create": "npm run typeorm:mysql -- migration:create --"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

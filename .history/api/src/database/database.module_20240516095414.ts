@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Global()
 @Module({
@@ -13,13 +13,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [__dirname + '/../**/entities/*{.ts,.js}'],
-      migrations: [
-        __dirname + '/../**/migrations/*{.ts,.js}',
-        __dirname + '/../**/seeds/*{.ts,.js}',
-      ],
-      synchronize: false,
-      autoLoadEntities: false,
+      autoLoadEntities: true,
+      synchronize: true,
     }),
   ],
 })

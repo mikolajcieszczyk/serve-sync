@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "sync-mysql",
+  "port": 3306,
+  "username": "np_backend",
+  "password": "gQkfrbPp75ZUJ57i34N3",
+  "database": "np_backend",
+  "migrationsRun": false,
+  "synchronize": false,
+  "logging": ["error", "warn"],
+  "entities": [
+    "./dist/**/entities/**/*.entity{.ts,.js}",
+    "./dist/**/entities/**/*.entity{.ts,.js}"
+  ],
+  "cache": false,
+  "cli": {
+    "migrationsDir": "./src/migrations"
+  }
+}

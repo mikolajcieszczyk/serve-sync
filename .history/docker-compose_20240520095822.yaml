@@ -1,0 +1,65 @@
+version: "3.7"
+
+services:
+  sync-mysql:
+    image: mysql/mysql-server:8.0.28
+    container_name: sync-mysql
+    restart: "no"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    expose:
+      - 3306
+    networks:
+      - sync-network
+    volumes:
+      - sync-mysql_data:/var/lib/mysql
+
+  sync-api:
+    image: sync-api
+    container_name: sync-api
+    restart: "no"
+    networks:
+      - sync-network
+    depends_on:
+      - sync-mysql
+    ports:
+      - 3201
+    build:
+      context: ./api
+      args:
+        UUID: ${UUID}
+        UGID: ${GUID}
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+    user: "${UUID}:${GUID}"
+    volumes:
+      - ./api:/app
+
+  sync-frontend:
+    image: sync-frontend
+    container_name: sync-frontend
+    restart: "no"
+    networks:
+      - sync-network
+    ports:
+      - 3202:3000
+    build:
+      context: ./frontend
+    user: "${UUID}:${GUID}"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - sync-api
+
+volumes:
+  sync-mysql_data:
+    driver: local
+    name: sync-mysql_data
+
+networks:
+  sync-network:
+    driver: bridge
+    name: sync-network
