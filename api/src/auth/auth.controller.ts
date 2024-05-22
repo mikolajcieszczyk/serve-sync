@@ -8,10 +8,14 @@ export class AuthController {
 
   constructor(private authService: AuthService) {}
 
+  @Post('auth/register')
+  async register(@Request() req) {
+    return this.authService.register(req.body);
+  }
+
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post('auth/login')
   async login(@Request() req) {
-    this.logger.log('Login request received', req.body);
     return this.authService.login(req.user);
   }
 }

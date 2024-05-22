@@ -12,11 +12,31 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    if (user && (await bcrypt.compare(pass, user.password))) {
+
+    if (user && bcrypt.compare(pass, user.password)) {
       const { password, ...result } = user;
+
       return result;
     }
+
     return null;
+  }
+  // constructor(
+  //   private usersService: UsersService,
+  //   private jwtService: JwtService,
+  // ) {}
+
+  // async validateUser(username: string, pass: string): Promise<any> {
+  //   const user = await this.usersService.findOne(username);
+  //   if (user && (await bcrypt.compare(pass, user.password))) {
+  //     const { password, ...result } = user;
+  //     return result;
+  //   }
+  //   return null;
+  // }
+
+  async register(userData: any): Promise<any> {
+    return await this.usersService.create(userData);
   }
 
   async login(user: any) {
