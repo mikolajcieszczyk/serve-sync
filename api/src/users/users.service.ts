@@ -1,48 +1,44 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UserEntity } from './entities/user.entity';
+import { RegisterUserDto } from './dto/register-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 // import * as bcrypt from 'bcrypt';
-
-export type User = {
-  userId: number;
-  username: string;
-  password: string;
-};
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [];
+  constructor(
+    @InjectRepository(UserEntity)
+    private usersRepository: Repository<UserEntity>,
+  ) {}
 
-  saltOrRounds: number = 10;
+  async registerUser(registerUserDto: RegisterUserDto): Promise<UserEntity> {
+    const { email, password } = registerUserDto;
+    const passwordHash = password;
+    // const passwordHash = await bcrypt.hash(password, 10);
 
-  constructor() {
-    this.users = [
-      {
-        userId: 1,
-        username: 'test',
-        password: 'test',
-      },
-    ];
+    const user = this.usersRepository.create({
+      email,
+      passwordHash,
+    });
+
+    return this.usersRepository.save(user);
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async updateUser(
+    userId: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UserEntity> {
+    await this.usersRepository.update(userId, updateUserDto);
+    return this.usersRepository.findOneBy({ userId });
   }
 
-  async create(userData: any): Promise<User> {
-    const userId = Date.now();
-    // const hashedPassword = await bcrypt.hash(
-    //   userData.password,
-    //   this.saltOrRounds,
-    // );
+  async findOneByEmail(email: string): Promise<UserEntity | undefined> {
+    return this.usersRepository.findOneBy({ email });
+  }
 
-    const newUser: User = {
-      userId: userId,
-      username: userData.username,
-      password: userData.password,
-      // password: hashedPassword,
-    };
-
-    this.users.push(newUser);
-
-    return newUser;
+  async getAllUsers(): Promise<UserEntity[]> {
+    return this.usersRepository.find();
   }
 }

@@ -1,3 +1,4 @@
+// src/user/user.entity.ts
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Gender {
@@ -12,36 +13,39 @@ export enum UserRole {
   OFFICE_EMPLOYEE = 'office_employee',
   OTHER = 'other',
 }
+
 @Entity()
-export class User {
+export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ unique: true })
-  username: string;
-
-  @Column()
-  passwordHash: string;
-
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.CLIENT,
-  })
-  role: UserRole;
+  userId: string;
 
   @Column({ unique: true })
   email: string;
 
   @Column()
+  passwordHash: string;
+
+  @Column({ unique: true, nullable: true })
+  username: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.CLIENT,
+    nullable: true,
+  })
+  role: UserRole;
+
+  @Column({ nullable: true })
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
   @Column({
     type: 'enum',
     enum: Gender,
+    nullable: true,
   })
   gender: Gender;
 
