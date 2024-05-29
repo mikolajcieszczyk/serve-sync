@@ -3,7 +3,7 @@
   "host": "sync-mysql",
   "port": 3306,
   "username": "root",
-  "password": "Mysztosczur23!@",
+  "password": "Mysztoszczur23!@",
   "database": "serve_sync",
   "migrationsRun": false,
   "synchronize": false,
