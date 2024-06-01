@@ -1,11 +1,13 @@
 import {
+  ConflictException,
   Inject,
   Injectable,
+  InternalServerErrorException,
   UnauthorizedException,
   forwardRef,
 } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt/jwt-payload.interface';
 import { UsersService } from 'src/users/users.service';
@@ -31,12 +33,21 @@ export class AuthService {
     return null;
   }
 
-  async register(userData: RegisterUserDto): Promise<UserEntity> {
+  async register(userData: RegisterUserDto): Promise<any> {
     const existingUser = await this.usersService.findOneByEmail(userData.email);
     if (existingUser) {
-      throw new Error('User already exists');
+      throw new ConflictException('User already exists');
     }
-    return this.usersService.registerUser(userData);
+
+    try {
+      const user = await this.usersService.registerUser(userData);
+      return {
+        message: 'User registered succesfully',
+        email: user.email,
+      };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to register user');
+    }
   }
 
   async login(loginDto: LoginDto): Promise<{ accessToken: string }> {

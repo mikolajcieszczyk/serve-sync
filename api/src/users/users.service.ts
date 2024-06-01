@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
-import { UserEntity } from './entities/user.entity';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-// import * as bcrypt from 'bcrypt';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -14,16 +14,21 @@ export class UsersService {
   ) {}
 
   async registerUser(registerUserDto: RegisterUserDto): Promise<UserEntity> {
-    const { email, password } = registerUserDto;
-    const passwordHash = password;
-    // const passwordHash = await bcrypt.hash(password, 10);
+    try {
+      const { email, password } = registerUserDto;
+      const passwordHash = await bcrypt.hash(password, 10);
 
-    const user = this.usersRepository.create({
-      email,
-      passwordHash,
-    });
+      const user = this.usersRepository.create({
+        email,
+        passwordHash,
+      });
 
-    return this.usersRepository.save(user);
+      return await this.usersRepository.save(user);
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Failed to save user to the database',
+      );
+    }
   }
 
   async updateUser(
