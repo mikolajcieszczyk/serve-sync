@@ -33,19 +33,24 @@ export class AuthService {
     return null;
   }
 
-  async register(userData: RegisterUserDto): Promise<any> {
-    const existingUser = await this.usersService.findOneByEmail(userData.email);
-    if (existingUser) {
-      throw new ConflictException('User already exists');
-    }
-
+  async register(userData: RegisterUserDto): Promise<RegisterUserDto> {
     try {
+      const existingUser = await this.usersService.findOneByEmail(
+        userData.email,
+      );
+      if (existingUser) {
+        throw new ConflictException('User already exists');
+      }
+
       const user = await this.usersService.registerUser(userData);
       return {
-        message: 'User registered succesfully',
         email: user.email,
+        password: '',
       };
     } catch (error) {
+      if (error instanceof ConflictException) {
+        throw error;
+      }
       throw new InternalServerErrorException('Failed to register user');
     }
   }

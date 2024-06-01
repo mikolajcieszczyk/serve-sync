@@ -6,6 +6,8 @@ import {
   Param,
   Get,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
 import { RegisterUserDto } from './dto/register-user.dto';
@@ -24,12 +26,13 @@ export class UsersController {
   @Post('register')
   async registerUser(
     @Body() registerUserDto: RegisterUserDto,
-  ): Promise<UserEntity> {
+  ): Promise<RegisterUserDto> {
     return this.authService.register(registerUserDto);
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
+  @UsePipes(new ValidationPipe({ transform: true }))
   async updateUser(
     @Param('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,

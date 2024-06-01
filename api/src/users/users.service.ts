@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
@@ -25,6 +29,7 @@ export class UsersService {
 
       return await this.usersRepository.save(user);
     } catch (error) {
+      console.error(error);
       throw new InternalServerErrorException(
         'Failed to save user to the database',
       );
@@ -35,11 +40,22 @@ export class UsersService {
     userId: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UserEntity> {
-    await this.usersRepository.update(userId, updateUserDto);
-    return this.usersRepository.findOneBy({ userId });
+    try {
+      await this.usersRepository.update(userId, updateUserDto);
+      const updatedUser = await this.usersRepository.findOneBy({ userId });
+      if (!updatedUser) {
+        throw new NotFoundException(`User with ID ${userId} not found`);
+      }
+      return updatedUser;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new InternalServerErrorException('Failed to update user');
+    }
   }
 
-  async findOneByEmail(email: string): Promise<UserEntity | undefined> {
+  async findOneByEmail(email: string): Promise<UserEntity> {
     return this.usersRepository.findOneBy({ email });
   }
 
