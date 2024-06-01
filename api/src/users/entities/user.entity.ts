@@ -1,4 +1,3 @@
-// src/user/user.entity.ts
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Gender {

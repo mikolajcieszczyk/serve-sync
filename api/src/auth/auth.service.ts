@@ -55,7 +55,9 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
+  async login(
+    loginDto: LoginDto,
+  ): Promise<{ accessToken: string; refreshToken: string }> {
     const { email, password } = loginDto;
     const user = await this.validateUser(email, password);
     if (!user) {
@@ -63,7 +65,23 @@ export class AuthService {
     }
 
     const payload: JwtPayload = { email: user.email };
-    const accessToken = this.jwtService.sign(payload);
-    return { accessToken };
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+
+    return { accessToken, refreshToken };
+  }
+
+  async refreshAccessToken(
+    refreshToken: string,
+  ): Promise<{ accessToken: string }> {
+    try {
+      const payload = this.jwtService.verify(refreshToken);
+      const newPayload: JwtPayload = { email: payload.email };
+      const accessToken = this.jwtService.sign(newPayload, { expiresIn: '1h' });
+
+      return { accessToken };
+    } catch (e) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 }
