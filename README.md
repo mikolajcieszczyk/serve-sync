@@ -1,4 +1,5 @@
-# ServeSync - Tennis Courts Management Application 🥎
+# ServeSync
+## Tennis Courts Management Application 🥎
 
 ServeSync is a web application built using NestJS, Next.js, and MySQL technologies. It enables tennis court reservations, tournament scheduling, and real-time court status tracking.
 
