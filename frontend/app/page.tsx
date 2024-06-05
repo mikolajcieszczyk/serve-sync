@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex flex-col sm:flex-col lg:flex-row w-2/3 mx-auto mt-10 bg-white shadow-lg z-2">
-      <div className="rounded border border-stroke px-7 py-4 dark:border-strokedark w-full lg:w-1/2">
+    <div className="flex flex-col sm:flex-col lg:flex-row w-2/3 mx-auto mt-10 mb-10 bg-white shadow-lg z-2">
+      <div className="rounded px-7 py-4 w-full lg:w-1/2 border-r-0">
         <div className="flex items-center justify-center">
           <Image
             src={"/img/serve_sync_logo.png"}
@@ -33,7 +33,7 @@ export default function Page() {
           court status tracking.
         </p>
       </div>
-      <div className="rounded border border-stroke px-7 py-4 dark:border-strokedark border-l-1 lg:border-l-0 border-t-0 lg:border-t-1 w-full lg:w-1/2">
+      <div className="rounded px-7 py-4 w-full lg:w-1/2">
         <Login />
       </div>
     </div>
