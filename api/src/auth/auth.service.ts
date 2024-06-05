@@ -55,9 +55,12 @@ export class AuthService {
     }
   }
 
-  async login(
-    loginDto: LoginDto,
-  ): Promise<{ accessToken: string; refreshToken: string }> {
+  async login(loginDto: LoginDto): Promise<{
+    accessToken: string;
+    refreshToken: string;
+    accessTokenExpiresAt: number;
+    refreshTokenExpiresAt: number;
+  }> {
     const { email, password } = loginDto;
     const user = await this.validateUser(email, password);
     if (!user) {
@@ -68,7 +71,12 @@ export class AuthService {
     const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
 
-    return { accessToken, refreshToken };
+    return {
+      accessToken,
+      refreshToken,
+      accessTokenExpiresAt: Date.now() + 3600 * 1000,
+      refreshTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000,
+    };
   }
 
   async refreshAccessToken(

@@ -1,27 +1,27 @@
 "use client";
+import { checkToken, getAccessToken } from "@components/utils/token";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import useSWR, { mutate } from "swr";
+import { useEffect, useState } from "react";
+
+const fetcher = async (url: string, data?: any) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
+    method: data ? "POST" : "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: data ? JSON.stringify(data) : null,
+  });
+  if (!res.ok) {
+    const error = new Error("An error occurred while fetching the data.");
+    (error as any).info = await res.json();
+    (error as any).status = res.status;
+    throw error;
+  }
+  return res.json();
+};
 
 export function Login() {
-  const fetcher = async (url: string, data?: any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
-      method: data ? "POST" : "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data ? JSON.stringify(data) : null,
-    });
-    if (!res.ok) {
-      const error = new Error("An error occurred while fetching the data.");
-      (error as any).info = await res.json();
-      (error as any).status = res.status;
-      throw error;
-    }
-    return res.json();
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -35,12 +35,24 @@ export function Login() {
       const response = await fetcher("/auth/login", { email, password });
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      console.log("git");
-      // router.push("/dashboard");
+      localStorage.setItem(
+        "accessTokenExpiresAt",
+        response.accessTokenExpiresAt.toString()
+      );
+      localStorage.setItem(
+        "refreshTokenExpiresAt",
+        response.refreshTokenExpiresAt.toString()
+      );
+      router.push("/dashboard");
     } catch (err) {
       setError("Login failed");
     }
   };
+
+  useEffect(() => {
+    checkToken(router);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -68,7 +80,7 @@ export function Login() {
                   autoComplete="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(`zazazaza@example.com`)}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -99,7 +111,7 @@ export function Login() {
                   autoComplete="current-password"
                   required
                   value={password}
-                  onChange={(e) => setPassword(`password123`)}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -114,6 +126,10 @@ export function Login() {
               </button>
             </div>
           </form>
+
+          {error && (
+            <p className="mt-2 text-center text-sm text-red-500">{error}</p>
+          )}
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
