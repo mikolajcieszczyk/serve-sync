@@ -3,6 +3,8 @@ import { checkToken, getAccessToken } from "@components/utils/token";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
+import { NavbarTop } from "../Layout/Navbar/NavbarTop";
 
 const fetcher = async (url: string, data?: any) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
@@ -26,6 +28,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  let [loading, setLoading] = useState(true);
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -51,12 +54,15 @@ export function Login() {
 
   useEffect(() => {
     checkToken(router);
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  return loading ? (
+    <LoadingSpinner loading={loading} />
+  ) : (
+    <div className="flex-col">
+      <div className="flex min-h-full flex-1 flex-col justify-center">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
@@ -97,7 +103,7 @@ export function Login() {
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-indigo-600 hover:text-gray-900"
                   >
                     Forgot password?
                   </a>
@@ -120,7 +126,7 @@ export function Login() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>
@@ -135,13 +141,13 @@ export function Login() {
             Not a member?{" "}
             <Link
               href="/register"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              className="font-semibold leading-6 text-indigo-600 hover:text-gray-900"
             >
               Create account here!
             </Link>
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
