@@ -7,15 +7,15 @@ export default function NavbarLeft() {
   const [menu, setMenu] = useState(menuArray);
   const [show, setShow] = useState(true);
 
-  const setMenuValue = (props) => {
-    let newArr = [...menu];
-    newArr[props] = !newArr[props];
-    setMenu(newArr);
-  };
+  // const setMenuValue = (props) => {
+  //   let newArr = [...menu];
+  //   newArr[props] = !newArr[props];
+  //   setMenu(newArr);
+  // };
 
   return (
     <div>
-      <div className="rounded-r bg-gray-900 xl:hidden flex justify-between w-full p-6 items-center ">
+      {/* <div className="rounded-r bg-gray-900 xl:hidden flex justify-between w-full p-6 items-center ">
         <div className="flex justify-between  items-center space-x-3">
           <svg
             width={34}
@@ -987,7 +987,7 @@ export default function NavbarLeft() {
             </svg>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
