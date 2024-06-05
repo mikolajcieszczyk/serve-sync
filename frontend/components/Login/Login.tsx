@@ -1,6 +1,47 @@
+"use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import useSWR, { mutate } from "swr";
 
 export function Login() {
+  const fetcher = async (url: string, data?: any) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
+      method: data ? "POST" : "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: data ? JSON.stringify(data) : null,
+    });
+    if (!res.ok) {
+      const error = new Error("An error occurred while fetching the data.");
+      (error as any).info = await res.json();
+      (error as any).status = res.status;
+      throw error;
+    }
+    return res.json();
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError(null);
+
+    try {
+      const response = await fetcher("/auth/login", { email, password });
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      console.log("git");
+      // router.push("/dashboard");
+    } catch (err) {
+      setError("Login failed");
+    }
+  };
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -11,7 +52,7 @@ export function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="email"
@@ -26,6 +67,8 @@ export function Login() {
                   type="email"
                   autoComplete="email"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(`zazazaza@example.com`)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -55,6 +98,8 @@ export function Login() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(`password123`)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
