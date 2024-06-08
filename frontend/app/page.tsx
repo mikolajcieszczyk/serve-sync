@@ -1,11 +1,13 @@
-import { NavbarTop } from "@components/components/Layout/Navbar/NavbarTop";
-import { Login } from "@components/components/Login/Login";
+import { Button } from "@components/components/Button/Button";
 
 export default function Page() {
   return (
     <>
-      <NavbarTop />
-      <Login />
+      <Button
+      // variant="default"
+      >
+        Button
+      </Button>
     </>
   );
 }
