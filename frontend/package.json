@@ -10,6 +10,13 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "imports": {
+    "#*": [
+      "./*",
+      "./*.ts",
+      "./*.tsx"
+    ]
+  },
   "dependencies": {
     "@next/swc-linux-x64-gnu": "^15.0.0-rc.0",
     "class-variance-authority": "^0.7.0",
