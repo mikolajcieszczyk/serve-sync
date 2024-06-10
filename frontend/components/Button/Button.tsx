@@ -2,7 +2,7 @@ import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import { IconType } from "react-icons";
-interface ButtonProps
+export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface ButtonProps
   iconPosition?: "left" | "right";
 }
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "flex items-center rounded-md px-4 py-2 text-white bg-primary-500",
   {
     variants: {
