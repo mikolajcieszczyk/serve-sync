@@ -127,7 +127,7 @@ const config: Config = {
             fontWeight: "var(--font-weight-400)",
           },
         ],
-        "input-text-large": [
+        "input-`text-`large": [
           "var(--font-size-input-text-large)",
           {
             lineHeight: "var(--line-height-28)",

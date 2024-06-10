@@ -1,271 +1,164 @@
 import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
-
+import { IconType } from "react-icons";
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children: ReactNode;
+  icon?: IconType;
+  iconPosition?: "left" | "right";
 }
 
-const buttonVariants = cva("rounded-md px-4 py-2", {
-  variants: {
-    variant: {
-      default: "bg-primary-500 text-white",
-      label: "bg-opacity-15 text-primary-500",
-      outline: "border border-primary-500 text-primary-500 bg-white",
-      text: "bg-white text-primary-500",
+const buttonVariants = cva(
+  "flex items-center rounded-md px-4 py-2 text-white bg-primary-500",
+  {
+    variants: {
+      variant: {
+        default: "",
+        label: "bg-primary-opacity-light text-primary-500",
+        outline: "bg-white text-primary-500 border border-primary-500",
+        text: "bg-white text-primary-500",
+      },
+      size: {
+        large: "py-3 px-6 text-lg",
+        medium: "py-2 px-4 text-base",
+        small: "py-1 px-2 text-sm",
+      },
+      accent: {
+        primary:
+          "hover:bg-primary-600 hover:text-white active:bg-primary-700 focus:outline-none focus:ring focus:ring-primary-300",
+        secondary:
+          "bg-secondary-500 hover:text-white hover:bg-secondary-600 active:bg-secondary-700 focus:outline-none focus:ring focus:ring-secondary-300",
+        error:
+          "bg-error-500 hover:text-white hover:bg-error-600 active:bg-error-700 focus:outline-none focus:ring focus:ring-error-300",
+        warning:
+          "bg-warning-500 hover:text-white hover:bg-warning-600 active:bg-warning-700 focus:outline-none focus:ring focus:ring-warning-300",
+        info: "bg-info-500 hover:text-white hover:bg-info-600 active:bg-info-700 focus:outline-none focus:ring focus:ring-info-300",
+        success:
+          "bg-success-500 hover:text-white hover:bg-success-600 active:bg-success-700 focus:outline-none focus:ring focus:ring-success-300",
+      },
+      state: {
+        default: "",
+        hover: "",
+        active: "active:bg-opacity-70",
+        focus: "focus:ring-2 focus:ring-primary-500",
+        disabled: "opacity-50 cursor-not-allowed",
+      },
     },
-    size: {
-      large: "text-button-large py-3 px-6",
-      medium: "text-button-medium py-2 px-4",
-      small: "text-button-small py-1 px-2",
-    },
-    shade: {
-      primary: "bg-primary-500",
-      secondary: "bg-secondary-500",
-      error: "bg-error-500",
-      warning: "bg-warning-500",
-      info: "bg-info-500",
-      success: "bg-success-500",
-    },
-    state: {
-      default: "",
-      hover: "hover:bg-opacity-80",
-      active: "active:bg-opacity-70",
-      focus: "focus:ring-2 focus:ring-primary-500",
-      disabled: "opacity-50 cursor-not-allowed",
-    },
-  },
-  compoundVariants: [
-    // Default variant states for primary shade
-    {
+    compoundVariants: [
+      //* Secondary accents
+      {
+        accent: "secondary",
+        variant: "label",
+        className: "bg-secondary-opacity-light text-secondary-500",
+      },
+      {
+        accent: "secondary",
+        variant: "outline",
+        className: "bg-white border border-secondary-500 text-secondary-500",
+      },
+      {
+        accent: "secondary",
+        variant: "text",
+        className: "bg-white text-secondary-500",
+      },
+      //* Error accents
+      {
+        accent: "error",
+        variant: "label",
+        className: "bg-error-opacity-light text-error-500",
+      },
+      {
+        accent: "error",
+        variant: "outline",
+        className: "bg-white border border-error-500 text-error-500",
+      },
+      {
+        accent: "error",
+        variant: "text",
+        className: "bg-white text-error-500",
+      },
+      //* Warning accents
+      {
+        accent: "warning",
+        variant: "label",
+        className: "bg-warning-opacity-light text-warning-500",
+      },
+      {
+        accent: "warning",
+        variant: "outline",
+        className: "bg-white border border-warning-500 text-warning-500",
+      },
+      {
+        accent: "warning",
+        variant: "text",
+        className: "bg-white text-warning-500",
+      },
+      //* Info accents
+      {
+        accent: "info",
+        variant: "label",
+        className: "bg-info-opacity-light text-info-500",
+      },
+      {
+        accent: "info",
+        variant: "outline",
+        className: "bg-white border border-info-500 text-info-500",
+      },
+      {
+        accent: "info",
+        variant: "text",
+        className: "bg-white text-info-500",
+      },
+      //* Success accents
+      {
+        accent: "success",
+        variant: "label",
+        className: "bg-success-opacity-light text-success-500",
+      },
+      {
+        accent: "success",
+        variant: "outline",
+        className: "bg-white border border-success-500 text-success-500",
+      },
+      {
+        accent: "success",
+        variant: "text",
+        className: "bg-white text-success-500",
+      },
+    ],
+    defaultVariants: {
       variant: "default",
-      shade: "primary",
-      state: "hover",
-      className: "hover:bg-primary-dark",
+      size: "medium",
+      state: "default",
+      accent: "primary",
     },
-    {
-      variant: "default",
-      shade: "primary",
-      state: "active",
-      className: "active:bg-primary-dark",
-    },
-    {
-      variant: "default",
-      shade: "primary",
-      state: "focus",
-      className: "focus:ring-primary-500",
-    },
-    {
-      variant: "default",
-      shade: "primary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    // Label variant states for primary shade
-    {
-      variant: "label",
-      shade: "primary",
-      state: "hover",
-      className: "hover:bg-primary-light",
-    },
-    {
-      variant: "label",
-      shade: "primary",
-      state: "active",
-      className: "active:bg-primary-light",
-    },
-    {
-      variant: "label",
-      shade: "primary",
-      state: "focus",
-      className: "focus:ring-primary-500",
-    },
-    {
-      variant: "label",
-      shade: "primary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    // Outline variant states for primary shade
-    {
-      variant: "outline",
-      shade: "primary",
-      state: "hover",
-      className: "hover:bg-primary-light",
-    },
-    {
-      variant: "outline",
-      shade: "primary",
-      state: "active",
-      className: "active:bg-primary-light",
-    },
-    {
-      variant: "outline",
-      shade: "primary",
-      state: "focus",
-      className: "focus:ring-primary-500",
-    },
-    {
-      variant: "outline",
-      shade: "primary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    // Text variant states for primary shade
-    {
-      variant: "text",
-      shade: "primary",
-      state: "hover",
-      className: "hover:bg-primary-light",
-    },
-    {
-      variant: "text",
-      shade: "primary",
-      state: "active",
-      className: "active:bg-primary-light",
-    },
-    {
-      variant: "text",
-      shade: "primary",
-      state: "focus",
-      className: "focus:ring-primary-500",
-    },
-    {
-      variant: "text",
-      shade: "primary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    // Add similar compound variants for other shades (secondary, error, warning, info, success)
-    // For Secondary
-    {
-      variant: "default",
-      shade: "secondary",
-      state: "hover",
-      className: "hover:bg-secondary-dark",
-    },
-    {
-      variant: "default",
-      shade: "secondary",
-      state: "active",
-      className: "active:bg-secondary-dark",
-    },
-    {
-      variant: "default",
-      shade: "secondary",
-      state: "focus",
-      className: "focus:ring-secondary-500",
-    },
-    {
-      variant: "default",
-      shade: "secondary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    {
-      variant: "label",
-      shade: "secondary",
-      state: "hover",
-      className: "hover:bg-secondary-light",
-    },
-    {
-      variant: "label",
-      shade: "secondary",
-      state: "active",
-      className: "active:bg-secondary-light",
-    },
-    {
-      variant: "label",
-      shade: "secondary",
-      state: "focus",
-      className: "focus:ring-secondary-500",
-    },
-    {
-      variant: "label",
-      shade: "secondary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    {
-      variant: "outline",
-      shade: "secondary",
-      state: "hover",
-      className: "hover:bg-secondary-light",
-    },
-    {
-      variant: "outline",
-      shade: "secondary",
-      state: "active",
-      className: "active:bg-secondary-light",
-    },
-    {
-      variant: "outline",
-      shade: "secondary",
-      state: "focus",
-      className: "focus:ring-secondary-500",
-    },
-    {
-      variant: "outline",
-      shade: "secondary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-
-    {
-      variant: "text",
-      shade: "secondary",
-      state: "hover",
-      className: "hover:bg-secondary-light",
-    },
-    {
-      variant: "text",
-      shade: "secondary",
-      state: "active",
-      className: "active:bg-secondary-light",
-    },
-    {
-      variant: "text",
-      shade: "secondary",
-      state: "focus",
-      className: "focus:ring-secondary-500",
-    },
-    {
-      variant: "text",
-      shade: "secondary",
-      state: "disabled",
-      className: "opacity-50 cursor-not-allowed",
-    },
-  ],
-  defaultVariants: {
-    variant: "default",
-    size: "medium",
-    state: "default",
-  },
-});
+  }
+);
 
 export function Button({
   children,
   className,
   variant,
   size,
-  shade,
+  accent,
   state,
+  icon: Icon,
+  iconPosition = "left",
   ...props
 }: ButtonProps) {
+  const shadeClass =
+    buttonVariants({ variant, size, state, className }) +
+    " " +
+    (accent ? buttonVariants({ accent, variant }) : "");
   return (
-    <button
-      className={cn(buttonVariants({ variant, size, shade, state, className }))}
-      {...props}
-    >
+    <button className={cn(shadeClass)} {...props}>
+      {Icon && iconPosition === "left" && <Icon className="mr-2" />}{" "}
+      {/* Ikona z lewej strony */}
       {children}
+      {Icon && iconPosition === "right" && <Icon className="ml-2" />}{" "}
+      {/* Ikona z prawej strony */}
     </button>
   );
 }
