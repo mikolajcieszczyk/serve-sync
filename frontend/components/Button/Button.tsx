@@ -11,7 +11,7 @@ export interface ButtonProps
 }
 
 export const buttonVariants = cva(
-  "flex items-center rounded-md px-4 py-2 text-white bg-primary-500",
+  "flex justify-center items-center rounded-md px-4 py-2 text-white bg-primary-500",
   {
     variants: {
       variant: {

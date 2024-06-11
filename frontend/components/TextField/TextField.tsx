@@ -26,7 +26,7 @@ export interface TextFieldProps
   helpText?: string;
 }
 
-const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ({ label, state, className, error, helpText, disabled, ...props }, ref) => {
     return (
       <div className="mb-4">
@@ -68,5 +68,3 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 );
 
 TextField.displayName = "TextField";
-
-export default TextField;

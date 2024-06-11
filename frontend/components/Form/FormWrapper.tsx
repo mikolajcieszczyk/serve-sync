@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Box } from "../Box/Box";
-import { Typography } from "../Typography";
+import { Typography } from "../Typography/Typography";
 import { Divider } from "#components/Divider/Divider.tsx";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
@@ -21,15 +21,17 @@ interface FormWrapperProps {
 export function FormWrapper({ children, description }: FormWrapperProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col">
-      <Box className="w-full md:w-2/3 h-3/4 p-12 flex items-center justify-between gap-6">
-        <div className="flex flex-col">
-          <Typography variant="h2" className="self-center mb-4">
+      <Box className="w-full md:w-2/3 lg:w-1/3 h-3/4 p-12 flex items-center justify-between">
+        <div className="flex flex-col self-start">
+          <Typography variant="h2" className="mb-4">
             ServeSync
           </Typography>
-          <Typography variant="h4">{description.header}</Typography>
-          <Typography variant="p" className="text-text-secondary">
-            {description.description}
-          </Typography>
+          <div className="flex flex-col gap-2">
+            <Typography variant="h4">{description.header}</Typography>
+            <Typography variant="p" className="text-text-secondary">
+              {description.description}
+            </Typography>
+          </div>
         </div>
         {children}
         <div className="">
