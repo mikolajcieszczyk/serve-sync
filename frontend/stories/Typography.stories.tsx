@@ -36,20 +36,18 @@ const typographyColors = [
 
 const generateTypographyVariants = (color?: TypographyProps["color"]) => {
   return typographyVariantsList.map((variant) => (
-    <>
-      <Typography key={`${variant}-${color}`} variant={variant} color={color}>
-        {variant.toUpperCase()} - {color}
-      </Typography>
-      <p />
-    </>
+    <Typography key={`${variant}-${color}`} variant={variant} color={color}>
+      {variant.toUpperCase()} - {color}
+      <br />
+    </Typography>
   ));
 };
 
 export const Colors: Story = {
   render: () => (
     <div className="my-4 ml-4">
-      {typographyColors.map((color) => (
-        <div key={color}>
+      {typographyColors.map((color, index) => (
+        <div key={`${index}-${color}`}>
           <h1 className="text-xl font-bold mb-10">
             {color.charAt(0).toUpperCase() + color.slice(1)}
           </h1>
