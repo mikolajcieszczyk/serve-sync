@@ -1,9 +1,14 @@
-// components/Typography.tsx
 import { ReactNode } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import cn from "@components/utils/cn";
 
-export const typographyStyles = cva("font-sans text-text-primary", {
+export interface TypographyProps
+  extends VariantProps<typeof typographyVariants> {
+  className?: string;
+  children: ReactNode;
+}
+
+export const typographyVariants = cva("font-sans text-text-primary", {
   variants: {
     variant: {
       h1: "text-4xl font-bold font-main-font leading-10",
@@ -30,11 +35,6 @@ export const typographyStyles = cva("font-sans text-text-primary", {
   },
 });
 
-export interface TypographyProps extends VariantProps<typeof typographyStyles> {
-  className?: string;
-  children: ReactNode;
-}
-
 export const Typography = ({
   variant = "p",
   color,
@@ -44,7 +44,9 @@ export const Typography = ({
   const Component = variant as keyof JSX.IntrinsicElements;
 
   return (
-    <Component className={cn(typographyStyles({ variant, color }), className)}>
+    <Component
+      className={cn(typographyVariants({ variant, color }), className)}
+    >
       {children}
     </Component>
   );

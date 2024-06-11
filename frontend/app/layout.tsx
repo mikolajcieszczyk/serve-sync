@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full bg-white">
+    <html lang="en" className="h-screen w-screen bg-body-bg text-base">
       <body className={publicSans.className}>{children}</body>
     </html>
   );

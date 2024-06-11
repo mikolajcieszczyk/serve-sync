@@ -133,6 +133,8 @@ const config: Config = {
         "outline-border": "var(--outline-border)",
         "input-border": "var(--input-border)",
         "backdrop-overlay": "var(--backdrop-overlay)",
+        facebook: "var(--bg-facebook)",
+        twitter: "var(--bg-twitter)",
 
         "gray-opacity-lighter": "var(--gray-opacity-lighter)",
         "gray-opacity-light": "var(--gray-opacity-light)",
@@ -148,34 +150,7 @@ const config: Config = {
         "grey-light": "var(--grey-light)",
       },
       boxShadow: {
-        "primary-shadow-small": "var(--primary-shadow-small)",
-        "primary-shadow-medium": "var(--primary-shadow-medium)",
-        "primary-shadow-large": "var(--primary-shadow-large)",
-
-        "secondary-shadow-small": "var(--secondary-shadow-small)",
-        "secondary-shadow-medium": "var(--secondary-shadow-medium)",
-        "secondary-shadow-large": "var(--secondary-shadow-large)",
-
-        "info-shadow-small": "var(--info-shadow-small)",
-        "info-shadow-medium": "var(--info-shadow-medium)",
-        "info-shadow-large": "var(--info-shadow-large)",
-
-        "success-shadow-small": "var(--success-shadow-small)",
-        "success-shadow-medium": "var(--success-shadow-medium)",
-        "success-shadow-large": "var(--success-shadow-large)",
-
-        "warning-shadow-small": "var(--warning-shadow-small)",
-        "warning-shadow-medium": "var(--warning-shadow-medium)",
-        "warning-shadow-large": "var(--warning-shadow-large)",
-
-        "error-shadow-small": "var(--error-shadow-small)",
-        "error-shadow-medium": "var(--error-shadow-medium)",
-        "error-shadow-large": "var(--error-shadow-large)",
-
-        "gray-shadow-extra-small": "var(--gray-shadow-extra-small)",
-        "gray-shadow-small": "var(--gray-shadow-small)",
-        "gray-shadow-medium": "var(--gray-shadow-medium)",
-        "gray-shadow-large": "var(--gray-shadow-large)",
+        md: "0px 3px 12px 0px rgba(47, 43, 61, 0.14)",
       },
       opacity: {
         "opacity-lighter": "var(--opacity-lighter)",

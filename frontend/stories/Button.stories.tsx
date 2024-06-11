@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, ButtonProps } from "../components/atoms/Button";
+import { Button, ButtonProps } from "../components/Button/Button";
 import { BiCheckShield } from "react-icons/bi";
 
 const meta: Meta<typeof Button> = {
