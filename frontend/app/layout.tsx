@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Public_Sans } from "next/font/google";
 
-const publicSans = Public_Sans({ subsets: ["latin"] });
+const publicSans = Public_Sans({
+  variable: "--main-font",
+  weight: ["400", "500"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "ServeSync - Tennis Courts Management Application",

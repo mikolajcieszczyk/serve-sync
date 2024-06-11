@@ -1,4 +1,5 @@
-import { Button } from "@components/components/Button/Button";
+import { Button } from "#components/atoms/Button/index.jsx";
+import Typography from "#components/atoms/Typography/index.jsx";
 import { BiCheckShield } from "react-icons/bi";
 
 export default function Page() {
@@ -15,6 +16,41 @@ export default function Page() {
   const states = ["default", "hover", "active", "focus", "disabled"];
   return (
     <div className="mt-4 ml-4 space-y-8">
+      <div className="p-6">
+        <Typography variant="h1" color="primary">
+          This is a Heading 1
+        </Typography>
+        <Typography variant="h2" color="primary">
+          This is a Heading 2
+        </Typography>
+        <Typography variant="h3" color="primary">
+          This is a Heading 3
+        </Typography>
+        <Typography variant="h4" color="primary">
+          This is a Heading 4
+        </Typography>
+        <Typography variant="h5" color="primary">
+          This is a Heading 5
+        </Typography>
+        <Typography variant="p" color="success">
+          This is a paragraph with success color
+        </Typography>
+
+        <Typography variant="p" color="error">
+          This is a paragraph with error color
+        </Typography>
+        <Typography variant="p" color="warning">
+          This is a paragraph with warning color
+        </Typography>
+        <Typography variant="p" color="info">
+          This is a paragraph with info color
+        </Typography>
+        <Typography variant="span">This is a span</Typography>
+        <br />
+        <Typography variant="small" color="error">
+          This is a small text with danger color
+        </Typography>
+      </div>
       <h1 className="text-xl font-bold">Variants</h1>
       <div className="flex gap-4 w-1/12">
         <Button variant="default">Default</Button>
