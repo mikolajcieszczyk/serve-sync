@@ -1,0 +1,72 @@
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+const isTokenValid = (expiresAt: string): boolean => {
+  return new Date().getTime() < Number(expiresAt);
+};
+
+export const getAccessToken = async (): Promise<string | null> => {
+  const accessToken = localStorage.getItem("accessToken");
+  const accessTokenExpiresAt = localStorage.getItem("accessTokenExpiresAt");
+
+  if (
+    accessToken &&
+    accessTokenExpiresAt &&
+    isTokenValid(accessTokenExpiresAt)
+  ) {
+    return accessToken;
+  }
+
+  const refreshToken = localStorage.getItem("refreshToken");
+  const refreshTokenExpiresAt = localStorage.getItem("refreshTokenExpiresAt");
+
+  if (
+    refreshToken &&
+    refreshTokenExpiresAt &&
+    isTokenValid(refreshTokenExpiresAt)
+  ) {
+    // token refresh
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ refreshToken }),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem(
+        "accessTokenExpiresAt",
+        data.accessTokenExpiresAt.toString()
+      );
+      return data.accessToken;
+    }
+  }
+
+  // if both tokens are invalid, log out
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("accessTokenExpiresAt");
+  localStorage.removeItem("refreshTokenExpiresAt");
+  return null;
+};
+
+export const checkToken = async (router: AppRouterInstance) => {
+  const token = await getAccessToken();
+
+  if (token) {
+    router.push("/dashboard");
+    return;
+  }
+};
+
+export const logout = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("accessTokenExpiresAt");
+  localStorage.removeItem("refreshTokenExpiresAt");
+};
