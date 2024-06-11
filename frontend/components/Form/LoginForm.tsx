@@ -6,9 +6,10 @@ import { Typography } from "#components/Typography/Typography.tsx";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { FormWrapper } from "./FormWrapper";
+import { checkToken } from "#utils/token.ts";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -19,6 +20,9 @@ export function LoginForm() {
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
+
+    console.log(email);
+    console.log(password);
 
     try {
       const response = await fetcher("/auth/login", { email, password });
@@ -37,6 +41,11 @@ export function LoginForm() {
       setError("Login failed");
     }
   };
+
+  useEffect(() => {
+    checkToken(router);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required"),
@@ -59,6 +68,10 @@ export function LoginForm() {
                 <Field
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e: {
+                    target: { value: SetStateAction<string> };
+                  }) => setEmail(e.target.value)}
                   as={TextField}
                   label="Email"
                   placeholder="Enter your email"
@@ -71,6 +84,10 @@ export function LoginForm() {
                 <Field
                   name="password"
                   type="password"
+                  value={password}
+                  onChange={(e: {
+                    target: { value: SetStateAction<string> };
+                  }) => setPassword(e.target.value)}
                   as={TextField}
                   label="Password"
                   placeholder="Enter your password"
