@@ -148,6 +148,8 @@ const config: Config = {
         "chat-bg": "var(--chat-bg)",
         "track-bg": "var(--track-bg)",
         "grey-light": "var(--grey-light)",
+
+        "box-shadow-focus": "0px 2px 6px 0px rgba(115, 103, 240, 0.30)",
       },
       boxShadow: {
         md: "0px 3px 12px 0px rgba(47, 43, 61, 0.14)",

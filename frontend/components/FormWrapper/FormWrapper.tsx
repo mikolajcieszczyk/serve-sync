@@ -13,15 +13,12 @@ interface DescriptionProps {
   footerDescription: ReactNode;
 }
 
-interface CredentialsWrapperProps {
+interface FormWrapperProps {
   children: ReactNode;
   description: DescriptionProps;
 }
 
-export function CredentialsWrapper({
-  children,
-  description,
-}: CredentialsWrapperProps) {
+export function FormWrapper({ children, description }: FormWrapperProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col">
       <Box className="w-full md:w-2/3 h-3/4 p-12 flex items-center justify-between gap-6">
