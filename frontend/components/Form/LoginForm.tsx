@@ -3,6 +3,7 @@
 import { Button } from "#components/Button/Button.tsx";
 import { TextField } from "#components/TextField/TextField.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
+import { loginUser } from "#utils/api.ts";
 import { checkToken, setToken } from "#utils/token.ts";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
@@ -10,8 +11,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { FormWrapper } from "./FormWrapper";
-import { loginUser } from "#utils/api.ts";
-import { useLoading } from "#Context/LoadingContext.tsx";
 
 const loginDescription = {
   header: "Welcome to ServeSync! 🎾",

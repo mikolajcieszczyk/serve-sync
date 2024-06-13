@@ -14,7 +14,6 @@
     "jsx": "preserve",
     "incremental": true,
     "allowImportingTsExtensions": true,
-    "useUnknownInCatchVariables": true,
     "plugins": [
       {
         "name": "next"
