@@ -1,4 +1,5 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { LoginApiResponse } from "./api";
 
 const isTokenValid = (expiresAt: string): boolean => {
   return new Date().getTime() < Number(expiresAt);
@@ -62,6 +63,19 @@ export const checkToken = async (router: AppRouterInstance) => {
     router.push("/dashboard");
     return;
   }
+};
+
+export const setToken = async (response: LoginApiResponse) => {
+  localStorage.setItem("accessToken", response.accessToken);
+  localStorage.setItem("refreshToken", response.refreshToken);
+  localStorage.setItem(
+    "accessTokenExpiresAt",
+    response.accessTokenExpiresAt.toString()
+  );
+  localStorage.setItem(
+    "refreshTokenExpiresAt",
+    response.refreshTokenExpiresAt.toString()
+  );
 };
 
 export const logout = () => {

@@ -3,42 +3,50 @@
 import { Button } from "#components/Button/Button.tsx";
 import { TextField } from "#components/TextField/TextField.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { checkToken, setToken } from "#utils/token.ts";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { FormWrapper } from "./FormWrapper";
-import { checkToken } from "#utils/token.ts";
+import { loginUser } from "#utils/api.ts";
+import { useLoading } from "#Context/LoadingContext.tsx";
+
+const loginDescription = {
+  header: "Welcome to ServeSync! 🎾",
+  description: "Please sign-in to your account and start the adventure",
+  footerDescription: (
+    <Typography className="text-text-secondary">
+      New on our platform?{" "}
+      <Link href="/register" className="text-primary-500">
+        Create an account
+      </Link>
+    </Typography>
+  ),
+};
+
+interface ApiError extends Error {
+  info?: {
+    message?: string;
+  };
+  status?: number;
+}
 
 export function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
 
-  const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError(null);
-
-    console.log(email);
-    console.log(password);
-
+  const handleLogin = async (email: string, password: string) => {
+    setError("");
     try {
-      const response = await fetcher("/auth/login", { email, password });
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
-      localStorage.setItem(
-        "accessTokenExpiresAt",
-        response.accessTokenExpiresAt.toString()
-      );
-      localStorage.setItem(
-        "refreshTokenExpiresAt",
-        response.refreshTokenExpiresAt.toString()
-      );
+      const response = await loginUser(email, password);
+      setToken(response);
       router.push("/dashboard");
-    } catch (err) {
-      setError("Login failed");
+    } catch (error) {
+      const apiError = error as ApiError;
+
+      setError(apiError.info?.message || "Login failed");
     }
   };
 
@@ -57,21 +65,21 @@ export function LoginForm() {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={(values, { setSubmitting }: FormikHelpers<any>) => {
+          handleLogin(values.email, values.password);
+          setSubmitting(false);
         }}
       >
-        {({ isSubmitting, touched, errors }) => {
+        {({ isSubmitting, touched, errors, values }) => {
+          const areValuesEmpty = !values.email && !values.password;
+          const disableSubmit = areValuesEmpty || isSubmitting;
+
           return (
-            <Form className="w-full sm:w-2/3 md:w-full" onSubmit={handleLogin}>
+            <Form className="w-full sm:w-2/3 md:w-full">
               <div className="mb-4">
                 <Field
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={(e: {
-                    target: { value: SetStateAction<string> };
-                  }) => setEmail(e.target.value)}
                   as={TextField}
                   label="Email"
                   placeholder="Enter your email"
@@ -84,10 +92,6 @@ export function LoginForm() {
                 <Field
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e: {
-                    target: { value: SetStateAction<string> };
-                  }) => setPassword(e.target.value)}
                   as={TextField}
                   label="Password"
                   placeholder="Enter your password"
@@ -98,7 +102,17 @@ export function LoginForm() {
                 />
               </div>
 
-              <Button type="submit" disabled={isSubmitting} className="w-full">
+              {error && (
+                <div className="mb-4 text-red-500">
+                  <Typography color="error">{error}</Typography>
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={!!disableSubmit}
+                className="w-full"
+              >
                 Login
               </Button>
             </Form>
@@ -108,33 +122,3 @@ export function LoginForm() {
     </FormWrapper>
   );
 }
-
-const fetcher = async (url: string, data?: any) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
-    method: data ? "POST" : "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: data ? JSON.stringify(data) : null,
-  });
-  if (!res.ok) {
-    const error = new Error("An error occurred while fetching the data.");
-    (error as any).info = await res.json();
-    (error as any).status = res.status;
-    throw error;
-  }
-  return res.json();
-};
-
-const loginDescription = {
-  header: "Welcome to ServeSync! 🎾",
-  description: "Please sign-in to your account and start the adventure",
-  footerDescription: (
-    <Typography className="text-text-secondary">
-      New on our platform?{" "}
-      <Link href="/register" className="text-primary-500">
-        Create an account
-      </Link>
-    </Typography>
-  ),
-};

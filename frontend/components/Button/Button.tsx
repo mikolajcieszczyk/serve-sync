@@ -2,6 +2,7 @@ import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import { IconType } from "react-icons";
+
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -11,7 +12,7 @@ export interface ButtonProps
 }
 
 export const buttonVariants = cva(
-  "flex justify-center items-center rounded-md px-4 py-2 text-white bg-primary-500 shadow-md",
+  "flex justify-center items-center rounded-md px-4 py-2 text-white bg-primary-500 shadow-md disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-primary-500 active:bg-opacity-70",
   {
     variants: {
       variant: {
@@ -38,16 +39,9 @@ export const buttonVariants = cva(
         success:
           "bg-success-500 hover:text-white hover:bg-success-600 active:bg-success-700 focus:outline-none focus:ring focus:ring-success-300",
       },
-      state: {
-        default: "",
-        hover: "",
-        active: "active:bg-opacity-70",
-        focus: "focus:ring-2 focus:ring-primary-500",
-        disabled: "opacity-50 cursor-not-allowed",
-      },
     },
     compoundVariants: [
-      //* Secondary accents
+      // Secondary accents
       {
         accent: "secondary",
         variant: "label",
@@ -63,7 +57,7 @@ export const buttonVariants = cva(
         variant: "text",
         className: "bg-white text-secondary-500",
       },
-      //* Error accents
+      // Error accents
       {
         accent: "error",
         variant: "label",
@@ -79,7 +73,7 @@ export const buttonVariants = cva(
         variant: "text",
         className: "bg-white text-error-500",
       },
-      //* Warning accents
+      // Warning accents
       {
         accent: "warning",
         variant: "label",
@@ -95,7 +89,7 @@ export const buttonVariants = cva(
         variant: "text",
         className: "bg-white text-warning-500",
       },
-      //* Info accents
+      // Info accents
       {
         accent: "info",
         variant: "label",
@@ -111,7 +105,7 @@ export const buttonVariants = cva(
         variant: "text",
         className: "bg-white text-info-500",
       },
-      //* Success accents
+      // Success accents
       {
         accent: "success",
         variant: "label",
@@ -131,7 +125,6 @@ export const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "medium",
-      state: "default",
       accent: "primary",
     },
   }
@@ -143,22 +136,20 @@ export function Button({
   variant,
   size,
   accent,
-  state,
   icon: Icon,
   iconPosition = "left",
   ...props
 }: ButtonProps) {
   const shadeClass =
-    buttonVariants({ variant, size, state, className }) +
+    buttonVariants({ variant, size, className }) +
     " " +
     (accent ? buttonVariants({ accent, variant }) : "");
+
   return (
-    <button className={cn(shadeClass)} {...props}>
-      {Icon && iconPosition === "left" && <Icon className="mr-2" />}{" "}
-      {/* Ikona z lewej strony */}
+    <button className={cn(shadeClass)} {...props} disabled={props.disabled}>
+      {Icon && iconPosition === "left" && <Icon className="mr-2" />}
       {children}
-      {Icon && iconPosition === "right" && <Icon className="ml-2" />}{" "}
-      {/* Ikona z prawej strony */}
+      {Icon && iconPosition === "right" && <Icon className="ml-2" />}
     </button>
   );
 }
