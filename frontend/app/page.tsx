@@ -1,4 +1,4 @@
-import { LoginForm } from "#components/Form/LoginForm.tsx";
+import { LoginForm } from "#components/Form/CredentialsForms/LoginForm.tsx";
 
 export default function Page() {
   return <LoginForm />;

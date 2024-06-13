@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { FormWrapper } from "./FormWrapper";
+import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
 
 const loginDescription = {
   header: "Welcome to ServeSync! 🎾",
@@ -60,7 +60,7 @@ export function LoginForm() {
   });
 
   return (
-    <FormWrapper description={loginDescription}>
+    <CredentialsFormsWrapper description={loginDescription}>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
@@ -70,9 +70,6 @@ export function LoginForm() {
         }}
       >
         {({ isSubmitting, touched, errors, values }) => {
-          const areValuesEmpty = !values.email && !values.password;
-          const disableSubmit = areValuesEmpty || isSubmitting;
-
           return (
             <Form className="w-full sm:w-2/3 md:w-full">
               <div className="mb-4">
@@ -107,17 +104,13 @@ export function LoginForm() {
                 </div>
               )}
 
-              <Button
-                type="submit"
-                disabled={!!disableSubmit}
-                className="w-full"
-              >
+              <Button type="submit" disabled={isSubmitting} className="w-full">
                 Login
               </Button>
             </Form>
           );
         }}
       </Formik>
-    </FormWrapper>
+    </CredentialsFormsWrapper>
   );
 }
