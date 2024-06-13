@@ -4,22 +4,28 @@ import { Button } from "#components/Button/Button.tsx";
 import { TextField } from "#components/TextField/TextField.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
 import { loginOrRegisterUser } from "#utils/api.ts";
-import { checkToken, setToken } from "#utils/token.ts";
-import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
+import {
+  ErrorMessage,
+  Field,
+  Form,
+  Formik,
+  FormikHelpers,
+  FormikState,
+} from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
 
 const loginDescription = {
-  header: "Welcome to ServeSync! 🎾",
-  description: "Please sign-in to your account and start the adventure",
+  header: "Adventure starts here! 🚀",
+  description: "Make your tennis courts management easy and fun!",
   footerDescription: (
     <Typography className="text-text-secondary">
-      New on our platform?{" "}
-      <Link href="/register" className="text-primary-500">
-        Create an account
+      Already have an account?{" "}
+      <Link href="/" className="text-primary-500">
+        Sign in instead
       </Link>
     </Typography>
   ),
@@ -45,20 +51,37 @@ const formFields = [
     label: "Password",
     placeholder: "Enter your password",
   },
+  {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    placeholder: "Confirm your password",
+  },
 ];
 
-const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
+const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/register`;
 
-export function LoginForm() {
+export function RegisterForm() {
   const router = useRouter();
   const [apiError, setApiError] = useState<string>("");
+  const [apiSuccess, setApiSuccess] = useState<string>("");
 
-  const handleLogin = async (email: string, password: string) => {
+  const handleRegister = async (
+    email: string,
+    password: string,
+    resetForm: (nextState?: Partial<FormikState<any>> | undefined) => void
+  ) => {
     setApiError("");
     try {
       const response = await loginOrRegisterUser(loginUrl, email, password);
-      setToken(response);
-      router.push("/dashboard");
+
+      console.log(
+        `🙈 --> file: RegisterForm.tsx:67 --> handleRegister --> response:`,
+        response
+      );
+
+      setApiSuccess("User registered successfully!");
+      resetForm();
     } catch (error) {
       const apiError = error as ApiError;
 
@@ -66,27 +89,28 @@ export function LoginForm() {
     }
   };
 
-  useEffect(() => {
-    checkToken(router);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string().required("Required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Confirm Password is required"),
   });
 
   return (
     <CredentialsFormsWrapper description={loginDescription}>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "", confirmPassword: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }: FormikHelpers<any>) => {
-          handleLogin(values.email, values.password);
+        onSubmit={(
+          values,
+          { setSubmitting, resetForm }: FormikHelpers<any>
+        ) => {
+          handleRegister(values.email, values.password, resetForm);
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting, touched, errors, values }) => {
+        {({ isSubmitting, touched, errors }) => {
           return (
             <Form className="w-full sm:w-2/3 md:w-full">
               {formFields.map((field) => (
@@ -108,15 +132,20 @@ export function LoginForm() {
                   />
                 </div>
               ))}
-
               {apiError && (
-                <div className="mb-4 text-red-500">
-                  <Typography color="error">{apiError}</Typography>
-                </div>
+                <Typography className="mb-4" color="error">
+                  {apiError}
+                </Typography>
+              )}
+
+              {apiSuccess && (
+                <Typography className="mb-4" color="success">
+                  {apiSuccess}
+                </Typography>
               )}
 
               <Button type="submit" disabled={isSubmitting} className="w-full">
-                Login
+                Sing Up
               </Button>
             </Form>
           );

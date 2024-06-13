@@ -24,10 +24,7 @@ export function CredentialsFormsWrapper({
 }: FormWrapperProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col relative">
-      {/* Top Left Square */}
-      {/* Bottom Right Square */}
-
-      <Box className="w-full md:w-2/3 lg:w-1/3 h-3/4 p-12 flex items-center justify-between relative">
+      <Box className="w-full md:w-2/3 lg:w-1/3 h-full md:h-5/6 p-12 flex items-center justify-between relative">
         <div
           className="hidden md:block absolute -top-8 -left-8 w-48 h-48 bg-primary-opacity-lighter rounded-md"
           style={{ zIndex: -1 }}
@@ -39,7 +36,7 @@ export function CredentialsFormsWrapper({
           <div className="bg-primary-opacity-lighter h-40 rounded-md"></div>
         </div>
 
-        <div className="flex flex-col self-start">
+        <div className="flex flex-col md:self-start">
           <Typography variant="h2" className="mb-4">
             ServeSync
           </Typography>
@@ -51,7 +48,7 @@ export function CredentialsFormsWrapper({
           </div>
         </div>
         {children}
-        <div className="">
+        <div className="pt-2">
           {description.footerDescription}
           <Divider title="or" />
           <div className="flex justify-center items-center gap-4">

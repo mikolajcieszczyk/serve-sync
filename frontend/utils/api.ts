@@ -17,10 +17,12 @@ export interface ApiError extends Error {
   status?: number;
 }
 
-const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
-
-export const loginUser = async (email: string, password: string) => {
-  const res = await fetch(loginUrl, {
+export const loginOrRegisterUser = async (
+  url: string,
+  email: string,
+  password: string
+) => {
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
