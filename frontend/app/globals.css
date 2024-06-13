@@ -4,6 +4,28 @@
 
 @layer base {
   :root {
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgba(115, 103, 240, 0.24);
+      border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
     /** Primary Colors */
     --primary-100: #e3e1fc;
     --primary-200: #c7c2f9;
@@ -24,8 +46,10 @@
 
     /** Primary Shadows */
     --primary-shadow-small: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --primary-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --primary-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --primary-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --primary-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
     /** Secondary Colors */
     --secondary-100: #E6E6E9;
@@ -47,8 +71,10 @@
 
     /** Secondary Shadows */
     --secondary-shadow-small: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --secondary-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --secondary-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --secondary-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --secondary-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
     /** Info Colors */
     --info-100: #CCF1F6;
@@ -70,8 +96,10 @@
 
     /** Info Shadows */
     --info-shadow-small: 0 1px 2px 0 rgba(0, 186, 209, 0.05);
-    --info-shadow-medium: 0 4px 6px -1px rgba(0, 186, 209, 0.1), 0 2px 4px -1px rgba(0, 186, 209, 0.06);
-    --info-shadow-large: 0 10px 15px -3px rgba(0, 186, 209, 0.1), 0 4px 6px -2px rgba(0, 186, 209, 0.05);
+    --info-shadow-medium: 0 4px 6px -1px rgba(0, 186, 209, 0.1),
+    0 2px 4px -1px rgba(0, 186, 209, 0.06);
+    --info-shadow-large: 0 10px 15px -3px rgba(0, 186, 209, 0.1),
+    0 4px 6px -2px rgba(0, 186, 209, 0.05);
 
     /** Success Colors */
     --success-100: #D4F4E2;
@@ -93,8 +121,10 @@
 
     /** Success Shadows */
     --success-shadow-small: 0 1px 2px 0 rgba(40, 199, 111, 0.05);
-    --success-shadow-medium: 0 4px 6px -1px rgba(40, 199, 111, 0.1), 0 2px 4px -1px rgba(40, 199, 111, 0.06);
-    --success-shadow-large: 0 10px 15px -3px rgba(40, 199, 111, 0.1), 0 4px 6px -2px rgba(40, 199, 111, 0.05);
+    --success-shadow-medium: 0 4px 6px -1px rgba(40, 199, 111, 0.1),
+    0 2px 4px -1px rgba(40, 199, 111, 0.06);
+    --success-shadow-large: 0 10px 15px -3px rgba(40, 199, 111, 0.1),
+    0 4px 6px -2px rgba(40, 199, 111, 0.05);
 
     /** Warning Colors */
     --warning-100: #FFECD9;
@@ -116,8 +146,10 @@
 
     /** Warning Shadows */
     --warning-shadow-small: 0 1px 2px 0 rgba(255, 159, 67, 0.05);
-    --warning-shadow-medium: 0 4px 6px -1px rgba(255, 159, 67, 0.1), 0 2px 4px -1px rgba(255, 159, 67, 0.06);
-    --warning-shadow-large: 0 10px 15px -3px rgba(255, 159, 67, 0.1), 0 4px 6px -2px rgba(255, 159, 67, 0.05);
+    --warning-shadow-medium: 0 4px 6px -1px rgba(255, 159, 67, 0.1),
+    0 2px 4px -1px rgba(255, 159, 67, 0.06);
+    --warning-shadow-large: 0 10px 15px -3px rgba(255, 159, 67, 0.1),
+    0 4px 6px -2px rgba(255, 159, 67, 0.05);
 
     /** Error Colors */
     --error-100: #FFDBDC;
@@ -139,8 +171,10 @@
 
     /** Error Shadows */
     --error-shadow-small: 0 1px 2px 0 rgba(255, 76, 81, 0.05);
-    --error-shadow-medium: 0 4px 6px -1px rgba(255, 76, 81, 0.1), 0 2px 4px -1px rgba(255, 76, 81, 0.06);
-    --error-shadow-large: 0 10px 15px -3px rgba(255, 76, 81, 0.1), 0 4px 6px -2px rgba(255, 76, 81, 0.05);
+    --error-shadow-medium: 0 4px 6px -1px rgba(255, 76, 81, 0.1),
+    0 2px 4px -1px rgba(255, 76, 81, 0.06);
+    --error-shadow-large: 0 10px 15px -3px rgba(255, 76, 81, 0.1),
+    0 4px 6px -2px rgba(255, 76, 81, 0.05);
 
     /** Gray Colors */
     --action-focus: #EAEAEC;
@@ -173,9 +207,12 @@
     /** Gray Shadows */
     --gray-shadow-extra-small: 0 1px 2px 0 rgba(46, 38, 61, 0.05);
     --gray-shadow-small: 0 1px 2px 0 rgba(46, 38, 61, 0.1);
-    --gray-shadow-medium: 0 4px 6px -1px rgba(46, 38, 61, 0.1), 0 2px 4px -1px rgba(46, 38, 61, 0.06);
-    --gray-shadow-large: 0 10px 15px -3px rgba(46, 38, 61, 0.1), 0 4px 6px -2px rgba(46, 38, 61, 0.05);
-    --gray-shadow-extra-large: 0 20px 25px -5px rgba(46, 38, 61, 0.1), 0 10px 10px -5px rgba(46, 38, 61, 0.04);
+    --gray-shadow-medium: 0 4px 6px -1px rgba(46, 38, 61, 0.1),
+    0 2px 4px -1px rgba(46, 38, 61, 0.06);
+    --gray-shadow-large: 0 10px 15px -3px rgba(46, 38, 61, 0.1),
+    0 4px 6px -2px rgba(46, 38, 61, 0.05);
+    --gray-shadow-extra-large: 0 20px 25px -5px rgba(46, 38, 61, 0.1),
+    0 10px 10px -5px rgba(46, 38, 61, 0.04);
 
     /** Custom Colors */
     --snackbar: #2F2B3D;
