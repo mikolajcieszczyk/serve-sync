@@ -86,7 +86,7 @@ export function LoginForm() {
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting, touched, errors, values }) => {
+        {({ isSubmitting, touched, errors }) => {
           return (
             <Form className="w-full sm:w-2/3 md:w-full">
               {formFields.map((field) => (
