@@ -40,10 +40,12 @@ export const getAccessToken = async (): Promise<string | null> => {
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem(
-        "accessTokenExpiresAt",
-        data.accessTokenExpiresAt.toString()
-      );
+      if (data.accessTokenExpiresAt) {
+        localStorage.setItem(
+          "accessTokenExpiresAt",
+          data.accessTokenExpiresAt.toString()
+        );
+      }
       return data.accessToken;
     }
   }
