@@ -25,7 +25,7 @@ export function CredentialsFormsWrapper({
 }: FormWrapperProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col relative">
-      <Box className="w-full md:w-2/3 lg:w-1/3 h-full md:h-5/6 p-12 flex items-center justify-between relative">
+      <Box className="w-full md:w-2/3 lg:w-2/3 xl:w-1/3 h-full md:h-5/6 p-12 flex items-center justify-between relative">
         <div
           className="hidden md:block absolute -top-8 -left-8 w-48 h-48 bg-primary-opacity-lighter rounded-md"
           style={{ zIndex: -1 }}
@@ -38,25 +38,20 @@ export function CredentialsFormsWrapper({
         </div>
 
         <div className="flex flex-col md:self-start">
-          <div className="grid grid-cols-2 items-center">
-            <Typography variant="h2" className="mb-4">
-              ServeSync{" "}
-            </Typography>
-            <div>
-              <Image
-                width={500}
-                src={Logo}
-                alt="serve sync logo"
-                className="justify-self-end"
-              />
+          <div className="grid md:grid-cols-2 items-center">
+            <div className="flex flex-col gap-2">
+              <Typography variant="h2" className="mb-4">
+                ServeSync{" "}
+              </Typography>
+              <Typography variant="h4">{description.header} </Typography>
+              <Typography variant="p" className="text-text-secondary">
+                {description.description}
+              </Typography>
             </div>
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <Typography variant="h4">{description.header} </Typography>
-            <Typography variant="p" className="text-text-secondary">
-              {description.description}
-            </Typography>
+            <div className="mx-auto">
+              <Image width={200} src={Logo} alt="serve sync logo" />
+            </div>
           </div>
         </div>
         {children}
