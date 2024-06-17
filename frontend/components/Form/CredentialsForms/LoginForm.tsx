@@ -49,6 +49,11 @@ const formFields = [
 
 const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
 
+const validationSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string().required("Required"),
+});
+
 export function LoginForm() {
   const router = useRouter();
   const [apiError, setApiError] = useState<string>("");
@@ -65,11 +70,6 @@ export function LoginForm() {
       setApiError(apiError.info?.message || "Login failed");
     }
   };
-
-  const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address").required("Required"),
-    password: Yup.string().required("Required"),
-  });
 
   return (
     <CredentialsFormsWrapper description={loginDescription}>
