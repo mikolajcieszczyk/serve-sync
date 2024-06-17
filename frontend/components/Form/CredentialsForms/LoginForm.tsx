@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
 
 const loginDescription = {
-  header: "Welcome to ServeSync! 🎾",
+  header: "Welcome to ServeSync!",
   description: "Please sign-in to your account and start the adventure",
   footerDescription: (
     <Typography className="text-text-secondary">

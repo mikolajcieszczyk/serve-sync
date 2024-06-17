@@ -6,7 +6,8 @@ import { PiGithubLogoFill } from "react-icons/pi";
 import { FaGoogle } from "react-icons/fa";
 import { Box } from "#components/Box/Box.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
-
+import Image from "next/image";
+import Logo from "public/img/serve_sync_logo.png";
 interface DescriptionProps {
   header: string;
   description: string;
@@ -37,11 +38,22 @@ export function CredentialsFormsWrapper({
         </div>
 
         <div className="flex flex-col md:self-start">
-          <Typography variant="h2" className="mb-4">
-            ServeSync
-          </Typography>
+          <div className="grid grid-cols-2 items-center">
+            <Typography variant="h2" className="mb-4">
+              ServeSync{" "}
+            </Typography>
+            <div>
+              <Image
+                width={500}
+                src={Logo}
+                alt="serve sync logo"
+                className="justify-self-end"
+              />
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2">
-            <Typography variant="h4">{description.header}</Typography>
+            <Typography variant="h4">{description.header} </Typography>
             <Typography variant="p" className="text-text-secondary">
               {description.description}
             </Typography>
