@@ -4,11 +4,11 @@ import { Button } from "#components/Button/Button.tsx";
 import { TextField } from "#components/TextField/TextField.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
 import { loginOrRegisterUser } from "#utils/api.ts";
-import { checkToken, setToken } from "#utils/token.ts";
+import { setToken } from "#utils/token.ts";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
 
@@ -65,11 +65,6 @@ export function LoginForm() {
       setApiError(apiError.info?.message || "Login failed");
     }
   };
-
-  useEffect(() => {
-    checkToken(router);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required"),

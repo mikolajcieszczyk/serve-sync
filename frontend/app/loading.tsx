@@ -1,5 +1,3 @@
-"use client";
-
 import { Typography } from "#components/Typography/Typography.tsx";
 
 export default function Loading() {

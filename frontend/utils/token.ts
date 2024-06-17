@@ -1,7 +1,7 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { LoginApiResponse } from "./api";
 
-const isTokenValid = (expiresAt: string): boolean => {
+export const isTokenValid = (expiresAt: string): boolean => {
   return new Date().getTime() < Number(expiresAt);
 };
 
@@ -25,7 +25,6 @@ export const getAccessToken = async (): Promise<string | null> => {
     refreshTokenExpiresAt &&
     isTokenValid(refreshTokenExpiresAt)
   ) {
-    // token refresh
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
       {
@@ -50,7 +49,6 @@ export const getAccessToken = async (): Promise<string | null> => {
     }
   }
 
-  // if both tokens are invalid, log out
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("accessTokenExpiresAt");
@@ -64,6 +62,8 @@ export const checkToken = async (router: AppRouterInstance) => {
   if (token) {
     router.push("/dashboard");
     return;
+  } else {
+    router.push("/");
   }
 };
 

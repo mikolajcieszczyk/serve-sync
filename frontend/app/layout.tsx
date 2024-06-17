@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Public_Sans } from "next/font/google";
+import "./globals.css";
+import { AppWrapper } from "#components/Layout/AppWrapper.tsx";
 
 const publicSans = Public_Sans({
   variable: "--main-font",
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-screen w-screen bg-body-bg text-base">
-      <body className={publicSans.className}>{children}</body>
+      <body className={publicSans.className}>
+        <AppWrapper>{children}</AppWrapper>
+      </body>
     </html>
   );
 }
