@@ -14,16 +14,16 @@ const navButtons = [
     icon: <MdDashboard />,
     href: "/dashboard",
   },
-  {
-    title: "Schedule",
-    icon: <AiOutlineSchedule />,
-    href: "/dashboard/schedule",
-  },
-  {
-    title: "Courts",
-    icon: <GiTennisCourt />,
-    href: "/dashboard/courts",
-  },
+  // {
+  //   title: "Schedule",
+  //   icon: <AiOutlineSchedule />,
+  //   href: "/dashboard/schedule",
+  // },
+  // {
+  //   title: "Courts",
+  //   icon: <GiTennisCourt />,
+  //   href: "/dashboard/courts",
+  // },
 ];
 
 export function Navbar() {

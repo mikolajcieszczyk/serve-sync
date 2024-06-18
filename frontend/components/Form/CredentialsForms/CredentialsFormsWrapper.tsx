@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { Divider } from "#components/Divider/Divider.tsx";
 import { FaFacebookF } from "react-icons/fa6";
-import { FaTwitter } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa6";
 import { PiGithubLogoFill } from "react-icons/pi";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa6";
 import { Box } from "#components/Box/Box.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
 import Image from "next/image";
