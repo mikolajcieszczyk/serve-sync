@@ -14,11 +14,11 @@ const navButtons = [
     icon: <MdDashboard />,
     href: "/dashboard",
   },
-  // {
-  //   title: "Schedule",
-  //   icon: <AiOutlineSchedule />,
-  //   href: "/dashboard/schedule",
-  // },
+  {
+    title: "Schedule",
+    icon: <AiOutlineSchedule />,
+    href: "/dashboard/schedule",
+  },
   // {
   //   title: "Courts",
   //   icon: <GiTennisCourt />,
@@ -51,7 +51,7 @@ export function Navbar() {
                 icon={button.icon}
                 href={button.href}
                 //todo FIX FOR NESTED ROUTES
-                isActive={pathname.includes(button.href)}
+                isActive={pathname === button.href}
               />
             );
           })}

@@ -27,9 +27,9 @@ export interface TextFieldProps
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ label, state, className, error, helpText, disabled, ...props }, ref) => {
+  ({ label, state, className, helpText, disabled, ...props }, ref) => {
     return (
-      <div className="mb-4">
+      <>
         {label && (
           <label
             className={cn("block mb-1", {
@@ -62,7 +62,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             {helpText}
           </p>
         )}
-      </div>
+      </>
     );
   }
 );

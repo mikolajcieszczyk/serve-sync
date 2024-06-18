@@ -20,7 +20,7 @@ export const useCheckToken = (): boolean => {
       const token = await getAccessToken();
       if (token) {
         console.log(token);
-        router.push("/dashboard");
+        router.push("/dashboard/schedule");
       } else {
         console.log("nietoken");
         router.push("/");
