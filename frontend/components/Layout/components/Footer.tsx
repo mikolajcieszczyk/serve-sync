@@ -3,12 +3,12 @@ import { PiGithubLogoFill } from "react-icons/pi";
 
 export function Footer() {
   return (
-    <footer className="md:flex md:items-center md:justify-between p-4 mt-4 bg-gray-800">
+    <footer className=" md:flex md:items-center md:justify-between p-4 mx-4">
       <ul className="flex items-center justify-center flex-wrap mb-6 md:mb-0">
         <li>
           <a
             href="#"
-            className="text-sm font-normal text-white hover:underline mr-4 md:mr-6"
+            className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
           >
             Terms and conditions
           </a>
@@ -16,7 +16,7 @@ export function Footer() {
         <li>
           <a
             href="#"
-            className="text-sm font-normal text-white hover:underline mr-4 md:mr-6"
+            className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
           >
             Privacy Policy
           </a>
@@ -24,7 +24,7 @@ export function Footer() {
         <li>
           <a
             href="#"
-            className="text-sm font-normal text-white hover:underline mr-4 md:mr-6"
+            className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
           >
             Licensing
           </a>
@@ -32,7 +32,7 @@ export function Footer() {
         <li>
           <a
             href="#"
-            className="text-sm font-normal text-white hover:underline mr-4 md:mr-6"
+            className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
           >
             Cookie Policy
           </a>
@@ -40,23 +40,23 @@ export function Footer() {
         <li>
           <a
             href="#"
-            className="text-sm font-normal text-white hover:underline"
+            className="text-sm font-normal text-gray-500 hover:underline"
           >
             Contact
           </a>
         </li>
       </ul>
       <div className="flex justify-center space-x-6">
-        <a href="#">
+        <a href="#" className="text-gray-500 hover:text-gray-900">
           <FaFacebookF className="text-facebook" />
         </a>
-        <a href="#">
+        <a href="#" className="text-gray-500 hover:text-gray-900">
           <FaTwitter className="text-twitter" />
         </a>
-        <a href="#">
-          <PiGithubLogoFill className="text-github" />
+        <a href="#" className="text-gray-500 hover:text-gray-900">
+          <PiGithubLogoFill className="text-text-primary" />
         </a>
-        <a href="#">
+        <a href="#" className="text-gray-500 hover:text-gray-900">
           <FaGoogle className="text-error-500" />
         </a>
       </div>

@@ -1,16 +1,11 @@
-import { Box } from "#components/Box/Box.tsx";
 import { NavButton } from "#components/Button/NavButton";
 import { Typography } from "#components/Typography/Typography.tsx";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Logo from "public/img/serve_sync_logo.png";
+import { AiOutlineSchedule } from "react-icons/ai";
+import { FaBars } from "react-icons/fa";
+import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { GiTennisCourt } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
-import { AiOutlineSchedule } from "react-icons/ai";
-import { useState } from "react";
-import { FaBars } from "react-icons/fa";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
 
 const navButtons = [
   {

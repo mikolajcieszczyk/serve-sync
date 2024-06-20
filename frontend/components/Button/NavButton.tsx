@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
-import { Button } from "./Button";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 interface NavButtonProps {
   icon: ReactNode;
