@@ -4,11 +4,29 @@ import { useRouter } from "next/navigation";
 import { Header } from "./components/Header";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const [showNav, setShowNav] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1024) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout();
