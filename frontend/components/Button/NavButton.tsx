@@ -7,18 +7,23 @@ interface NavButtonProps {
   title: string;
   href: string;
   isActive?: boolean;
+  showNav: boolean;
 }
 
-export function NavButton({ icon, title, href, isActive }: NavButtonProps) {
+export function NavButton({
+  icon,
+  title,
+  href,
+  isActive,
+  showNav,
+}: NavButtonProps) {
   return (
-    <Link href={href} className="w-full">
-      <Button
-        variant="text"
-        className={`w-full justify-start gap-2 text-primary hover:bg-secondary-100 hover:text-primary focus:ring-0 shadow-none focus:bg-secondary-100 active:bg-secondary-200 ${isActive && `text-white bg-primary-500 hover:bg-primary-400 focus:bg-primary-400 active:bg-primary-500 `}`}
-      >
-        <div style={{ color: `${isActive ? `white` : `black`}` }}>{icon}</div>
-        {title}
-      </Button>
+    <Link
+      href={href}
+      className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive && `bg-gray-700`}`}
+    >
+      {icon}
+      {showNav && <span className="ms-3">{title}</span>}
     </Link>
   );
 }

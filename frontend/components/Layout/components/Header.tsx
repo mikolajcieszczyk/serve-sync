@@ -30,7 +30,7 @@ export function Header({ handleLogout }: HeaderProps) {
 
         <Dropdown
           dropdownComponent={
-            <RxAvatar size={32} className="text-primary-500 cursor-pointer" />
+            <RxAvatar size={32} className="text-gray-800 cursor-pointer" />
           }
           options={dropdownOptions}
         />
