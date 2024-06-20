@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoading } from "#Context/LoadingContext.jsx";
+import { useLoading } from "#context/LoadingContext.tsx";
 import React from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 
