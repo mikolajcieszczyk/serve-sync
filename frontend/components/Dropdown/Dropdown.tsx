@@ -1,12 +1,15 @@
+import { Typography } from "#components/Typography/Typography.tsx";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { BsPersonRaisedHand } from "react-icons/bs";
 
 interface DropdownProps {
   dropdownComponent: ReactNode;
   options?: {
-    title: string;
-    icon: ReactNode;
+    title?: string;
+    icon?: ReactNode;
     url?: string;
     onClick?: () => void;
+    horizontalLine?: boolean;
   }[];
 }
 
@@ -53,8 +56,19 @@ const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
+            <div className="flex gap-2 px-4 py-2">
+              <BsPersonRaisedHand size={48} className="text-gray-800" />
+              <div className="flex flex-col gap-2">
+                <Typography className="text-gray-800">Miki Fiki</Typography>
+                <Typography variant="small" className="text-gray-400">
+                  Admin
+                </Typography>
+              </div>
+            </div>
             {options?.map((option) => {
-              return (
+              return option.horizontalLine ? (
+                <hr key={Math.random()} className="my-1" />
+              ) : (
                 <a
                   key={option.title}
                   href={option.url ?? undefined}

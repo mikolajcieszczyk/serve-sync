@@ -4,6 +4,8 @@ import { TextField } from "#components/TextField/TextField.tsx";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { RxAvatar } from "react-icons/rx";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
+import { TbReportMoney } from "react-icons/tb";
 
 interface HeaderProps {
   handleLogout: () => void;
@@ -14,7 +16,24 @@ export function Header({ handleLogout }: HeaderProps) {
     {
       title: "My profile",
       icon: <RxAvatar size={24} className="text-gray-800 cursor-pointer" />,
-      url: "/dashboard/my-profile",
+      url: "#",
+    },
+    {
+      title: "Settings",
+      icon: (
+        <IoSettingsOutline size={24} className="text-gray-800 cursor-pointer" />
+      ),
+      url: "#",
+    },
+    {
+      horizontalLine: true,
+    },
+    {
+      title: "Billing Plan",
+      icon: (
+        <TbReportMoney size={24} className="text-gray-800 cursor-pointer" />
+      ),
+      url: "#",
     },
     {
       title: "Log out",
