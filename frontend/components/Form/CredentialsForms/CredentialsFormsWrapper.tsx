@@ -27,14 +27,14 @@ export function CredentialsFormsWrapper({
     <div className="h-screen w-screen flex justify-center items-center flex-col relative">
       <Box className="w-full md:w-2/3 lg:w-2/3 xl:w-1/3 h-full md:h-5/6 p-12 flex items-center justify-between relative">
         <div
-          className="hidden md:block absolute -top-8 -left-8 w-48 h-48 bg-primary-opacity-lighter rounded-md"
+          className="hidden md:block absolute -top-8 -left-8 w-48 h-48 bg-blue-100 rounded-md"
           style={{ zIndex: -1 }}
         ></div>
         <div
           className="hidden md:block absolute -bottom-8 -right-8 w-48 h-48 rounded-md p-4 border-dashed border-2 border-primary-opacity-light"
           style={{ zIndex: -1 }}
         >
-          <div className="bg-primary-opacity-lighter h-40 rounded-md"></div>
+          <div className="bg-blue-100 h-40 rounded-md"></div>
         </div>
 
         <div className="flex flex-col md:self-start">

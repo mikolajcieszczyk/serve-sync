@@ -4,6 +4,7 @@ interface DropdownProps {
   dropdownComponent: ReactNode;
   options?: {
     title: string;
+    icon: ReactNode;
     url?: string;
     onClick?: () => void;
   }[];
@@ -36,7 +37,6 @@ const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
-    // Cleanup event listener on unmount
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -58,10 +58,11 @@ const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
                 <a
                   key={option.title}
                   href={option.url ?? undefined}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                   role="menuitem"
                   onClick={() => handleOptionClick(option.onClick)}
                 >
+                  {option.icon}
                   {option.title}
                 </a>
               );

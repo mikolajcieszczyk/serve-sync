@@ -3,6 +3,7 @@ import Dropdown from "#components/Dropdown/Dropdown.tsx";
 import { TextField } from "#components/TextField/TextField.tsx";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { RxAvatar } from "react-icons/rx";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 interface HeaderProps {
   handleLogout: () => void;
@@ -12,10 +13,14 @@ export function Header({ handleLogout }: HeaderProps) {
   const dropdownOptions = [
     {
       title: "My profile",
+      icon: <RxAvatar size={24} className="text-gray-800 cursor-pointer" />,
       url: "/dashboard/my-profile",
     },
     {
       title: "Log out",
+      icon: (
+        <RiLogoutBoxLine size={24} className="text-gray-800 cursor-pointer" />
+      ),
       onClick: handleLogout,
     },
   ];
