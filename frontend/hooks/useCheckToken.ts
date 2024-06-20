@@ -18,12 +18,14 @@ export const useCheckToken = (): boolean => {
 
     const checkToken = async () => {
       const token = await getAccessToken();
-      if (token) {
-        console.info("[useCheckToken]: Token exists");
-        router.push(pathname);
-      } else {
-        console.info("[useCheckToken]: Token does not exist");
-        router.push("/");
+      if (pathname.includes("dashboard")) {
+        if (token) {
+          console.info("[useCheckToken]: Token exists");
+          router.push(pathname);
+        } else {
+          console.info("[useCheckToken]: Token does not exist");
+          router.push("/");
+        }
       }
       setLoading(false);
     };
