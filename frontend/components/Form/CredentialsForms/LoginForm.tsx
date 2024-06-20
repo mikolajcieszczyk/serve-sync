@@ -110,7 +110,11 @@ export function LoginForm() {
                 </div>
               )}
 
-              <Button type="submit" disabled={isSubmitting} className="w-full">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gray-800"
+              >
                 Login
               </Button>
             </Form>

@@ -144,8 +144,12 @@ export function RegisterForm() {
                 </Typography>
               )}
 
-              <Button type="submit" disabled={isSubmitting} className="w-full">
-                Sing Up
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gray-800"
+              >
+                Sign Up
               </Button>
             </Form>
           );
