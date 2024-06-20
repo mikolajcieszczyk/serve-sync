@@ -9,7 +9,7 @@ export const useCheckToken = (): boolean => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const errorPages = ["/404", "/500"]; // Dodaj tutaj inne strony błędów, jeśli masz więcej
+    const errorPages = ["/404", "/500"];
 
     if (errorPages.includes(pathname)) {
       setLoading(false);
@@ -19,10 +19,10 @@ export const useCheckToken = (): boolean => {
     const checkToken = async () => {
       const token = await getAccessToken();
       if (token) {
-        console.log(token);
-        router.push("/dashboard/schedule");
+        console.info("[useCheckToken]: Token exists");
+        router.push(pathname);
       } else {
-        console.log("nietoken");
+        console.info("[useCheckToken]: Token does not exist");
         router.push("/");
       }
       setLoading(false);
