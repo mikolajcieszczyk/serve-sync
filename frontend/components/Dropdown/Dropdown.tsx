@@ -1,3 +1,4 @@
+import { Button } from "#components/Button/Button.tsx";
 import { Typography } from "#components/Typography/Typography.tsx";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { BsPersonRaisedHand } from "react-icons/bs";
@@ -11,9 +12,14 @@ interface DropdownProps {
     onClick?: () => void;
     horizontalLine?: boolean;
   }[];
+  handleLogout: () => void;
 }
 
-const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
+const Dropdown = ({
+  dropdownComponent,
+  options,
+  handleLogout,
+}: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +78,7 @@ const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
                 <a
                   key={option.title}
                   href={option.url ?? undefined}
-                  className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  className="flex items-center gap-2 mx-2 px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                   role="menuitem"
                   onClick={() => handleOptionClick(option.onClick)}
                 >
@@ -81,6 +87,9 @@ const Dropdown = ({ dropdownComponent, options }: DropdownProps) => {
                 </a>
               );
             })}
+            <Button onClick={handleLogout} className="w-11/12 mx-auto my-2">
+              Logout
+            </Button>
           </div>
         </div>
       )}
