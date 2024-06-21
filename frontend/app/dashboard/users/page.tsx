@@ -124,7 +124,17 @@ function renderUserRoleIcon(type: UserRole) {
   }
 }
 
-export default function Dashboard() {
+async function getUsers() {
+  const res = await fetch("http://localhost:3201/user");
+
+  const users = await res.json();
+
+  return users;
+}
+
+export default async function Dashboard() {
+  // const users = await getUsers();
+
   return (
     <>
       <div className="w-full h-full relative overflow-auto shadow-md rounded-md">
