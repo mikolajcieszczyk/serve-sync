@@ -1,11 +1,12 @@
 import { NavButton } from "#components/Button/NavButton";
 import { Typography } from "#components/Typography/Typography.tsx";
 import { usePathname } from "next/navigation";
-import { AiOutlineSchedule } from "react-icons/ai";
+import { GrSchedule } from "react-icons/gr";
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { GiTennisCourt } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
+import { FaUsersBetweenLines } from "react-icons/fa6";
 
 const navButtons = [
   {
@@ -20,9 +21,20 @@ const navButtons = [
     href: "/dashboard",
   },
   {
+    title: "Users",
+    icon: (
+      <FaUsersBetweenLines
+        size={24}
+        className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+        aria-label="Users Icon"
+      />
+    ),
+    href: "/dashboard/users",
+  },
+  {
     title: "Schedule",
     icon: (
-      <AiOutlineSchedule
+      <GrSchedule
         size={24}
         className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
         aria-label="Schedule Icon"
