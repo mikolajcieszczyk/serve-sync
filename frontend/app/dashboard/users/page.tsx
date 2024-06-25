@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
+import Loading from "#app/loading.tsx";
 import { Table } from "#components/Table/Table.tsx";
 import { TableHeader } from "#components/Table/TableHeader.tsx";
 import { getAuthHeaders } from "#utils/token.ts";
@@ -50,12 +51,15 @@ async function getUsers() {
     return data;
   } catch (error) {
     console.error(error);
-    // Obsługa błędów, np. przekierowanie do strony logowania
   }
 }
 
 export default async function Dashboard() {
-  const fetchedUsers = await getUsers();
+  const users: User[] = await getUsers();
+
+  if (!users) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -85,7 +89,7 @@ export default async function Dashboard() {
             </tr>
           </TableHeader>
           <tbody>
-            {fetchedUsers.map((user, index) => (
+            {users.map((user, index) => (
               <tr
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -136,74 +140,6 @@ export default async function Dashboard() {
     </>
   );
 }
-
-const users: User[] = [
-  {
-    userId: "1",
-    email: "miki@wp.pl",
-    username: "",
-    role: UserRole.ADMIN,
-    firstName: "Mikołaj",
-    lastName: "Kowalski",
-    gender: Gender.MALE,
-    dateOfBirth: new Date(),
-    phoneNumber: "12334535",
-    profilePictureUrl: "",
-    additionalInfo: "",
-  },
-  {
-    userId: "1",
-    email: "miki@wp.pl",
-    username: "",
-    role: UserRole.CLIENT,
-    firstName: "Mikołaj",
-    lastName: "Kowalski",
-    gender: Gender.FEMALE,
-    dateOfBirth: new Date(),
-    phoneNumber: "12334535",
-    profilePictureUrl: "",
-    additionalInfo: "",
-  },
-  {
-    userId: "1",
-    email: "miki@wp.pl",
-    username: "",
-    role: UserRole.COACH,
-    firstName: "Mikołaj",
-    lastName: "Kowalski",
-    gender: Gender.FEMALE,
-    dateOfBirth: new Date(),
-    phoneNumber: "12334535",
-    profilePictureUrl: "",
-    additionalInfo: "",
-  },
-  {
-    userId: "1",
-    email: "miki@wp.pl",
-    username: "",
-    role: UserRole.OFFICE_EMPLOYEE,
-    firstName: "Mikołaj",
-    lastName: "Kowalski",
-    gender: Gender.FEMALE,
-    dateOfBirth: new Date(),
-    phoneNumber: "12334535",
-    profilePictureUrl: "",
-    additionalInfo: "",
-  },
-  {
-    userId: "1",
-    email: "miki@wp.pl",
-    username: "",
-    role: UserRole.OTHER,
-    firstName: "Mikołaj",
-    lastName: "Kowalski",
-    gender: Gender.FEMALE,
-    dateOfBirth: new Date(),
-    phoneNumber: "12334535",
-    profilePictureUrl: "",
-    additionalInfo: "",
-  },
-];
 
 const thItems = [
   {
