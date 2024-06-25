@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <Navbar showNav={showNav} setShowNav={setShowNav} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header handleLogout={handleLogout} />
-        <main className="flex-1 px-4 overflow-y-auto shadow-md">
+        <main className="flex-1 px-4 overflow-y-auto shadow-md pb-4">
           <Box className="min-h-full">{children}</Box>
         </main>
         <Footer />

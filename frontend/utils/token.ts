@@ -86,3 +86,16 @@ export const logout = () => {
   localStorage.removeItem("accessTokenExpiresAt");
   localStorage.removeItem("refreshTokenExpiresAt");
 };
+
+export const getAuthHeaders = async () => {
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) {
+    throw new Error("Unable to obtain access token");
+  }
+
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`,
+  };
+};

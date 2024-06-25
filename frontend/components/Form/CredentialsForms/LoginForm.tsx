@@ -54,6 +54,8 @@ const validationSchema = Yup.object({
   password: Yup.string().required("Required"),
 });
 
+//TODO asasasasas
+
 export function LoginForm() {
   const router = useRouter();
   const [apiError, setApiError] = useState<string>("");
@@ -62,6 +64,12 @@ export function LoginForm() {
     setApiError("");
     try {
       const response = await loginOrRegisterUser(loginUrl, email, password);
+
+      console.log(
+        `🙈 --> file: LoginForm.tsx:68 --> handleLogin --> response:`,
+        response
+      );
+
       setToken(response);
       router.push("/dashboard");
     } catch (error) {
