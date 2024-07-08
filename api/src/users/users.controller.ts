@@ -45,4 +45,10 @@ export class UsersController {
   async getAllUsers(): Promise<UserEntity[]> {
     return this.usersService.getAllUsers();
   }
+
+  @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  async getUserById(@Param('id') id: string): Promise<UserEntity> {
+    return this.usersService.getUserById(id);
+  }
 }

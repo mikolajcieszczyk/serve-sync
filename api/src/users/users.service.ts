@@ -62,4 +62,8 @@ export class UsersService {
   async getAllUsers(): Promise<UserEntity[]> {
     return this.usersRepository.find();
   }
+
+  async getUserById(userId: string): Promise<UserEntity> {
+    return this.usersRepository.findOne({ where: { userId } });
+  }
 }
