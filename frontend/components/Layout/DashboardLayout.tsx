@@ -1,10 +1,10 @@
-import { Box } from "#components/Box/Box.tsx";
-import { logout } from "#utils/token.ts";
 import { useRouter } from "next/navigation";
 import { Header } from "./components/Header";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ReactNode, useEffect, useState } from "react";
+import { Box } from "../Box/Box";
+import { logout } from "utils/token";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();

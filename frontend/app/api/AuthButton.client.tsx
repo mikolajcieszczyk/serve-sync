@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "#components/Button/Button.tsx";
+import { Button } from "@/components/Button/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function AuthButtonClient() {

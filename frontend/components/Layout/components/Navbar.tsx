@@ -1,5 +1,3 @@
-import { NavButton } from "#components/Button/NavButton";
-import { Typography } from "#components/Typography/Typography.tsx";
 import { usePathname } from "next/navigation";
 import { GrSchedule } from "react-icons/gr";
 import { FaBars } from "react-icons/fa";
@@ -7,6 +5,8 @@ import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { GiTennisCourt } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
 import { FaUsersBetweenLines } from "react-icons/fa6";
+import { NavButton } from "@/components/Button/NavButton";
+import { Typography } from "@/components/Typography/Typography";
 
 const navButtons = [
   {

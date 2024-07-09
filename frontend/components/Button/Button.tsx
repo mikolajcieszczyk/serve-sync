@@ -1,7 +1,7 @@
-import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import { IconType } from "react-icons";
+import cn from "utils/cn";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

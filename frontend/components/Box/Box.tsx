@@ -1,6 +1,6 @@
-import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { ReactNode } from "react";
+import cn from "utils/cn";
 
 export interface BoxProps extends VariantProps<typeof boxVariants> {
   children: ReactNode;

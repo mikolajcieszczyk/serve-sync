@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
-import Loading from "#app/loading.tsx";
-import { Table } from "#components/Table/Table.tsx";
-import { TableHeader } from "#components/Table/TableHeader.tsx";
-import { getAuthHeaders } from "#utils/token.ts";
-import { Gender, User, UserRole } from "#utils/types/user.ts";
+
+import { Table } from "@/components/Table/Table";
+import { TableHeader } from "@/components/Table/TableHeader";
+import Loading from "app/loading";
 import { FaFemale, FaMale } from "react-icons/fa";
+import { getAuthHeaders } from "utils/token";
+import { Gender, User, UserRole } from "utils/types/user";
 
 function renderGenderIcon(gender: Gender) {
   if (gender === Gender.MALE) {

@@ -1,4 +1,4 @@
-import { Typography } from "#components/Typography/Typography.jsx";
+import { Typography } from "../Typography/Typography";
 
 export function LoadingSpinner() {
   return (

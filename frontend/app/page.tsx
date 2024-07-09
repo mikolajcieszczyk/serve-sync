@@ -1,6 +1,6 @@
 // import { LoginForm } from "#components/Form/CredentialsForms/LoginForm.tsx";
-import { auth } from "#app/auth/index.ts";
 import AuthButtonServer from "./api/AuthButton.server";
+import { auth } from "./auth";
 
 export default async function Page() {
   const session = await auth();

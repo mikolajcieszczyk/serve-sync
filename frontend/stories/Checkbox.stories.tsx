@@ -1,4 +1,4 @@
-import Checkbox, { CheckboxProps } from "#components/Checkbox/Checkbox.tsx";
+import Checkbox, { CheckboxProps } from "@/components/Checkbox/Checkbox";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Checkbox> = {

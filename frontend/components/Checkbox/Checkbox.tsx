@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import cn from "@components/utils/cn";
+import cn from "utils/cn";
 
 const checkboxStyles = cva(
   "shadow-md rounded-md form-checkbox h-5 w-5 text-blue-600",

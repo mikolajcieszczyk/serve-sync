@@ -1,9 +1,5 @@
 "use client";
 
-import { Button } from "#components/Button/Button.tsx";
-import { TextField } from "#components/TextField/TextField.tsx";
-import { Typography } from "#components/Typography/Typography.tsx";
-import { loginOrRegisterUser } from "#utils/api.ts";
 import {
   ErrorMessage,
   Field,
@@ -17,6 +13,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import * as Yup from "yup";
 import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
+import { Button } from "@/components/Button/Button";
+import { TextField } from "@/components/TextField/TextField";
+import { Typography } from "@/components/Typography/Typography";
+import { loginOrRegisterUser } from "utils/api";
 
 const loginDescription = {
   header: "Adventure starts here! 🚀",

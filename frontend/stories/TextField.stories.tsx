@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from "#components/TextField/TextField.tsx";
+import { TextField, TextFieldProps } from "@/components/TextField/TextField";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof TextField> = {

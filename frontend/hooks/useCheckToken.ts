@@ -1,7 +1,7 @@
 "use client";
-import { getAccessToken } from "#utils/token.ts";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getAccessToken } from "utils/token";
 
 export const useCheckToken = (): boolean => {
   const router = useRouter();
