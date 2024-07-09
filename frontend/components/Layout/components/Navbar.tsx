@@ -5,8 +5,8 @@ import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { GiTennisCourt } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
 import { FaUsersBetweenLines } from "react-icons/fa6";
-import { NavButton } from "@/components/Button/NavButton";
-import { Typography } from "@/components/Typography/Typography";
+import { Typography } from "@/Typography";
+import { NavButton } from "@/NavButton";
 
 const navButtons = [
   {

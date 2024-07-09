@@ -1,6 +1,6 @@
-import { Box } from "@/components/Box/Box";
-import Dropdown from "@/components/Dropdown/Dropdown";
-import { TextField } from "@/components/TextField/TextField";
+import { Box } from "@/Box";
+import Dropdown from "@/Dropdown";
+import { TextField } from "@/TextField/TextField";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";

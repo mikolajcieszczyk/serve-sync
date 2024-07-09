@@ -1,4 +1,4 @@
-import { Typography } from "../Typography/Typography";
+import { Typography } from "../Typography";
 
 interface DividerProps {
   title: string;

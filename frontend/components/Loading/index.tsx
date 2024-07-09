@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { LoadingSpinner } from "./LoadingSpinner";
 import { useLoading } from "context/LoadingContext";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const Loader: React.FC = () => {
   const { isLoading } = useLoading();

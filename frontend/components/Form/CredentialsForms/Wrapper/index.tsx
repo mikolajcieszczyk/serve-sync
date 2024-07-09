@@ -5,9 +5,9 @@ import { PiGithubLogoFill } from "react-icons/pi";
 import { FaGoogle } from "react-icons/fa6";
 import Image from "next/image";
 import Logo from "public/img/serve_sync_logo.png";
-import { Box } from "@/components/Box/Box";
-import { Typography } from "@/components/Typography/Typography";
-import { Divider } from "@/components/Divider/Divider";
+import { Box } from "@/Box";
+import { Typography } from "@/Typography";
+import { Divider } from "@/Divider";
 
 interface DescriptionProps {
   header: string;

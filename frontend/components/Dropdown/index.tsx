@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { BsPersonRaisedHand } from "react-icons/bs";
-import { Button } from "../Button/Button";
-import { Typography } from "../Typography/Typography";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 
 interface DropdownProps {
   dropdownComponent: ReactNode;
