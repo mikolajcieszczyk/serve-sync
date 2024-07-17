@@ -1,3 +1,4 @@
+import { getToken } from "app/lib/api/auth/login.ts";
 import NextAuth, { NextAuthConfig, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
@@ -12,11 +13,26 @@ const authOptions: NextAuthConfig = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials): Promise<User | null> {
+        // console.log(
+        //   `🙈 --> file: index.ts:18 --> authorize --> response:`,
+        //   response.accessToken
+        // );
+
+        // const credentialDetails = {
+        //   email: credentials.email as string,
+        //   password: credentials.password as string,
+        // };
+
+        // const response = await getToken(
+        //   credentialDetails.email,
+        //   credentialDetails.password
+        // );
+
         const users = [
           {
             id: "1",
-            email: "miki@wp.pl",
-            password: "miki",
+            email: "asd@asd.pl",
+            password: "asd",
           },
         ];
 
@@ -30,6 +46,19 @@ const authOptions: NextAuthConfig = {
       },
     }),
   ],
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
+    async session({ session, user, token }) {
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      // console.log(`🙈 --> file: index.ts:44 --> jwt --> getToken:`, getToken);
+
+      return token;
+    },
+  },
   basePath: BASE_PATH,
   secret: process.env.AUTH_SECRET,
 };
