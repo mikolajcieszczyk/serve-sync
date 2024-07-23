@@ -53,6 +53,8 @@ services:
       - ./frontend:/app
     depends_on:
       - sync-api
+    links:
+      - sync-api
 
 volumes:
   sync-mysql_data:

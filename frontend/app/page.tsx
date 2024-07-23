@@ -33,17 +33,21 @@ const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
 export default async function Page() {
   const session = await auth();
 
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1")
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+  // const response = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+  //   .then((response) => response.json())
+  //   .then((json) => console.log(json));
 
-  // const response = await fetch("http://127.0.0.1:3201/");
+  const response = await fetch("http:/sync-api:4000/");
+  // .then((response) => response.json())
+  // .then((json) => console.log(json));
 
   // if (!response.ok) {
   //   throw new Error("Failed to fetch, Miki");
   // }
 
-  // const data = await response.json();
+  const data = await response;
+
+  console.log(data);
 
   // console.log(`🙈 --> file: page.tsx:44 --> Page --> data:`, data);
 
