@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/no-async-client-component */
 "use client";
 
-import { Table } from "@/components/Table/Table";
-import { TableHeader } from "@/components/Table/TableHeader";
+import { Table } from "@/Table";
+import { TableHeader } from "@/Table/TableHeader";
 import Loading from "app/loading";
 import { FaFemale, FaMale } from "react-icons/fa";
 import { getAuthHeaders } from "utils/token";

@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { abortOnError: false });
-  const port = 3000;
+  const port = 4000;
 
   app.enableCors({
     origin: 'http://localhost:3202',
