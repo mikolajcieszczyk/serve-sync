@@ -1,10 +1,10 @@
-import { Box } from "#components/Box/Box.tsx";
-import { logout } from "#utils/token.ts";
+import { Box } from "@/Box";
 import { useRouter } from "next/navigation";
-import { Header } from "./components/Header";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
 import { ReactNode, useEffect, useState } from "react";
+import { logout } from "utils/token";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { Navbar } from "../components/Navbar";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <Navbar showNav={showNav} setShowNav={setShowNav} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header handleLogout={handleLogout} />
-        <main className="flex-1 px-4 overflow-y-auto shadow-md">
+        <main className="flex-1 px-4 overflow-y-auto shadow-md pb-4">
           <Box className="min-h-full">{children}</Box>
         </main>
         <Footer />

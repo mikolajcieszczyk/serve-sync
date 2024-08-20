@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
-import { Divider } from "#components/Divider/Divider.tsx";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa6";
 import { PiGithubLogoFill } from "react-icons/pi";
 import { FaGoogle } from "react-icons/fa6";
-import { Box } from "#components/Box/Box.tsx";
-import { Typography } from "#components/Typography/Typography.tsx";
 import Image from "next/image";
 import Logo from "public/img/serve_sync_logo.png";
+import { Box } from "@/Box";
+import { Typography } from "@/Typography";
+import { Divider } from "@/Divider";
+
 interface DescriptionProps {
   header: string;
   description: string;

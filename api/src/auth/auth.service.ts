@@ -56,6 +56,7 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto): Promise<{
+    email: string;
     accessToken: string;
     refreshToken: string;
     accessTokenExpiresAt: number;
@@ -72,6 +73,7 @@ export class AuthService {
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
 
     return {
+      email,
       accessToken,
       refreshToken,
       accessTokenExpiresAt: Date.now() + 3600 * 1000,

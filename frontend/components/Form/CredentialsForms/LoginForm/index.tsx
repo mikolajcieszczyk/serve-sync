@@ -1,16 +1,16 @@
 "use client";
 
-import { Button } from "#components/Button/Button.tsx";
-import { TextField } from "#components/TextField/TextField.tsx";
-import { Typography } from "#components/Typography/Typography.tsx";
-import { loginOrRegisterUser } from "#utils/api.ts";
-import { setToken } from "#utils/token.ts";
+import { Button } from "@/Button";
+import { TextField } from "@/TextField/TextField";
+import { Typography } from "@/Typography";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { loginOrRegisterUser } from "utils/api";
+import { setToken } from "utils/token";
 import * as Yup from "yup";
-import { CredentialsFormsWrapper } from "./CredentialsFormsWrapper";
+import { CredentialsFormsWrapper } from "../Wrapper";
 
 const loginDescription = {
   header: "Welcome to ServeSync!",
@@ -54,6 +54,8 @@ const validationSchema = Yup.object({
   password: Yup.string().required("Required"),
 });
 
+//TODO asasasasas
+
 export function LoginForm() {
   const router = useRouter();
   const [apiError, setApiError] = useState<string>("");
@@ -62,6 +64,12 @@ export function LoginForm() {
     setApiError("");
     try {
       const response = await loginOrRegisterUser(loginUrl, email, password);
+
+      console.log(
+        `🙈 --> file: LoginForm.tsx:68 --> handleLogin --> response:`,
+        response
+      );
+
       setToken(response);
       router.push("/dashboard");
     } catch (error) {

@@ -1,3 +1,3 @@
 export default function Dashboard() {
-  return <div>elo</div>;
+  return <div>dashboard</div>;
 }

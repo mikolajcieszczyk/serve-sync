@@ -26,7 +26,7 @@ services:
     depends_on:
       - sync-mysql
     ports:
-      - 3201:3000
+      - 3201:4000
     build:
       context: ./api
       args:
@@ -52,6 +52,8 @@ services:
     volumes:
       - ./frontend:/app
     depends_on:
+      - sync-api
+    links:
       - sync-api
 
 volumes:

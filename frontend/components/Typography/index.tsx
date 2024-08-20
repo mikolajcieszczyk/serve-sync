@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import cn from "@components/utils/cn";
+import cn from "utils/cn";
 
 export interface TypographyProps
   extends VariantProps<typeof typographyVariants> {

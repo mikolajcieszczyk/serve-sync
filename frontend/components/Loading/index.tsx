@@ -1,7 +1,7 @@
 "use client";
 
-import { useLoading } from "#context/LoadingContext.tsx";
 import React from "react";
+import { useLoading } from "context/LoadingContext";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 const Loader: React.FC = () => {

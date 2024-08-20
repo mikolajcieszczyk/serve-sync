@@ -1,6 +1,6 @@
-import cn from "@components/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 import { InputHTMLAttributes, forwardRef } from "react";
+import cn from "utils/cn";
 
 const textFieldStyles = cva("border rounded-md p-2 w-full", {
   variants: {

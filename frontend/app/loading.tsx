@@ -1,4 +1,4 @@
-import { Typography } from "#components/Typography/Typography.tsx";
+import { Typography } from "@/Typography";
 
 export default function Loading() {
   return (
