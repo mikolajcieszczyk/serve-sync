@@ -1,4 +1,5 @@
 // import { LoginForm } from "@/Form/CredentialsForms/LoginForm";
+import axios from "axios";
 import AuthButtonServer from "./api/AuthButton.server";
 import { auth } from "./auth";
 // import { logIn } from "./lib/api/auth/login";
@@ -33,21 +34,32 @@ const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login`;
 export default async function Page() {
   const session = await auth();
 
+  console.log(`🙈 --> file: page.tsx:36 --> Page --> session:`, session);
+
   // const response = await fetch("https://jsonplaceholder.typicode.com/todos/1")
   //   .then((response) => response.json())
   //   .then((json) => console.log(json));
 
-  const response = await fetch("http:/sync-api:4000/");
-  // .then((response) => response.json())
-  // .then((json) => console.log(json));
+  // const response = await fetch("http:/sync-api:4000/");
 
+  // console.log(`🙈 --> file: page.tsx:42 --> Page --> response:`, response);
+  // const response = await axios.post(
+  //   `${process.env.LOCAL_API_URL_INTERNAL}/auth/login`,
+  //   {
+  //     email: "asd@asd.pl",
+  //     password: "asd",
+  //   }
+  // );
+
+  // const user = response.data;
+  // console.log(user);
   // if (!response.ok) {
   //   throw new Error("Failed to fetch, Miki");
   // }
 
-  const data = await response;
+  // const data = await response;
 
-  console.log(data);
+  // console.log(data);
 
   // console.log(`🙈 --> file: page.tsx:44 --> Page --> data:`, data);
 
