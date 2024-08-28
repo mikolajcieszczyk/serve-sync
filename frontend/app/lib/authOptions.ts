@@ -39,11 +39,11 @@ export const authOptions = {
       session.accessToken = token.accessToken;
       return session;
     },
-    // redirect({ url, baseUrl }) {
-    //   return url.startsWith(baseUrl) ? url : `${baseUrl}/dashboard`;
-    // },
   },
-
+  pages: {
+    signIn: "/",
+    error: "/login",
+  },
   session: {
     strategy: "jwt",
   },

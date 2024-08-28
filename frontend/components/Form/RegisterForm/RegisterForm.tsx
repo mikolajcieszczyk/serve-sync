@@ -43,20 +43,20 @@ const formFields = [
   {
     name: "email",
     type: "email",
-    label: "Email",
-    placeholder: "Enter your email",
+    label: "E-mail",
+    placeholder: "E-mail",
   },
   {
     name: "password",
     type: "password",
     label: "Password",
-    placeholder: "Enter your password",
+    placeholder: "Password",
   },
   {
     name: "confirmPassword",
     type: "password",
     label: "Confirm Password",
-    placeholder: "Confirm your password",
+    placeholder: "Confirm password",
   },
 ];
 
@@ -113,14 +113,13 @@ export function RegisterForm() {
       >
         {({ isSubmitting, touched, errors }) => {
           return (
-            <Form className="w-full sm:w-2/3 md:w-full">
+            <Form className="w-full">
               {formFields.map((field) => (
-                <div className="mb-4" key={field.name}>
+                <div key={field.name}>
                   <Field
                     name={field.name}
                     type={field.type}
                     as={TextField}
-                    label={field.label}
                     placeholder={field.placeholder}
                     helpText={
                       <ErrorMessage name={field.name} component="div" />
@@ -130,6 +129,7 @@ export function RegisterForm() {
                         ? "error"
                         : "default"
                     }
+                    className="w-full p-2 mb-4 border rounded"
                   />
                 </div>
               ))}
