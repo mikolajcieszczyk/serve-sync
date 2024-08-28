@@ -29,11 +29,14 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
     ".next/types/**/*.ts",
     "app/lib/api/auth/login",
-    "next-auth.d.ts"
+    "next-auth.d.ts",
+    "app/lib/authOptions.ts",
+    "next-env.d.ts",
+    "types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }
