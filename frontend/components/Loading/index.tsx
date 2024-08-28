@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useLoading } from "context/LoadingContext";
-import { LoadingSpinner } from "./LoadingSpinner";
+import React from 'react';
+import { useLoading } from 'context/LoadingContext';
+import { LoadingSpinner } from './LoadingSpinner';
 
 const Loader: React.FC = () => {
   const { isLoading } = useLoading();
@@ -12,7 +12,7 @@ const Loader: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
       <LoadingSpinner />
     </div>
   );

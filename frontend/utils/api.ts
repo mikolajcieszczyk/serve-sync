@@ -23,15 +23,15 @@ export const loginOrRegisterUser = async (
   password: string
 ) => {
   const res = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) {
     const error = new Error(
-      "An error occurred while fetching the data."
+      'An error occurred while fetching the data.'
     ) as ApiError;
     error.info = await res.json();
     error.status = res.status;

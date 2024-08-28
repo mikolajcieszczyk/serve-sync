@@ -1,7 +1,7 @@
-"use client";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { getAccessToken } from "utils/token";
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { getAccessToken } from 'utils/token';
 
 export const useCheckToken = (): boolean => {
   const router = useRouter();
@@ -9,7 +9,7 @@ export const useCheckToken = (): boolean => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const errorPages = ["/404", "/500"];
+    const errorPages = ['/404', '/500'];
 
     if (errorPages.includes(pathname)) {
       setLoading(false);
@@ -18,13 +18,13 @@ export const useCheckToken = (): boolean => {
 
     const checkToken = async () => {
       const token = await getAccessToken();
-      if (pathname.includes("dashboard")) {
+      if (pathname.includes('dashboard')) {
         if (token) {
-          console.info("[useCheckToken]: Token exists");
+          console.info('[useCheckToken]: Token exists');
           router.push(pathname);
         } else {
-          console.info("[useCheckToken]: Token does not exist");
-          router.push("/");
+          console.info('[useCheckToken]: Token does not exist');
+          router.push('/');
         }
       }
       setLoading(false);

@@ -2,8 +2,10 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:storybook/recommended",
-    "next/babel",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:tailwindcss/recommended",
+    "next",
+    "prettier"
   ],
   "rules": {
     "no-unused-vars": 1

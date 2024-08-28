@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ReactNode } from "react";
+import Link from 'next/link';
+import { ReactNode } from 'react';
 
 interface NavButtonProps {
   icon: ReactNode;
@@ -19,10 +19,10 @@ export function NavButton({
   return (
     <Link
       href={href}
-      className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive && `bg-gray-700`}`}
+      className={`group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${isActive && `bg-gray-700`}`}
     >
       {icon}
-      {showNav && <span className="ms-3">{title}</span>}
+      {showNav && <span className='ms-3'>{title}</span>}
     </Link>
   );
 }

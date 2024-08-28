@@ -1,4 +1,4 @@
-import { Typography } from "../Typography";
+import { Typography } from '../Typography';
 
 interface DividerProps {
   title: string;
@@ -6,10 +6,10 @@ interface DividerProps {
 
 export function Divider({ title }: DividerProps) {
   return (
-    <div className="relative flex py-5 items-center">
-      <div className="flex-grow border-t border-divider"></div>
-      <Typography className="flex-shrink mx-4">{title}</Typography>
-      <div className="flex-grow border-t border-divider"></div>
+    <div className='relative flex items-center py-5'>
+      <div className='grow border-t border-divider'></div>
+      <Typography className='mx-4 shrink'>{title}</Typography>
+      <div className='grow border-t border-divider'></div>
     </div>
   );
 }

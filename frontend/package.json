@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "eslint ./ --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "imports": {
     "#*": [
@@ -26,9 +29,11 @@
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "eslint-plugin-tailwindcss": "^3.17.4",
     "formik": "^2.4.6",
     "next": "^14.2.2",
     "next-auth": "^4.24.7",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
@@ -54,6 +59,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.8.0",
     "postcss": "^8",
     "storybook": "^8.1.6",

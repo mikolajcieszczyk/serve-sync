@@ -22,9 +22,8 @@
       }
     ],
     "paths": {
-      "@/*": ["components/*"],
-      "@/lib*": ["lib/*"],
-      "@shared/*": ["../shared/*"]
+      "@components/*": ["components/*"],
+      "@lib/*": ["lib/*"]
     }
   },
   "include": [

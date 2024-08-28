@@ -1,25 +1,25 @@
-import { InputHTMLAttributes, forwardRef } from "react";
-import { cva, VariantProps } from "class-variance-authority";
-import cn from "utils/cn";
+import { InputHTMLAttributes, forwardRef } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
+import cn from 'utils/cn';
 
 const checkboxStyles = cva(
-  "shadow-md rounded-md form-checkbox h-5 w-5 text-blue-600",
+  'form-checkbox size-5 rounded-md text-blue-600 shadow-md',
   {
     variants: {
       checkboxSize: {
-        small: "h-4 w-4",
-        medium: "h-5 w-5",
-        large: "h-6 w-6",
+        small: 'size-4',
+        medium: 'size-5',
+        large: 'size-6',
       },
       state: {
-        default: "text-blue-600",
-        error: "text-red-600",
-        success: "text-green-600",
+        default: 'text-blue-600',
+        error: 'text-red-600',
+        success: 'text-green-600',
       },
     },
     defaultVariants: {
-      checkboxSize: "medium",
-      state: "default",
+      checkboxSize: 'medium',
+      state: 'default',
     },
   }
 );
@@ -33,9 +33,9 @@ export interface CheckboxProps
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, checkboxSize, state, className, ...props }, ref) => {
     return (
-      <label className="flex items-center space-x-2">
+      <label className='flex items-center space-x-2'>
         <input
-          type="checkbox"
+          type='checkbox'
           ref={ref}
           className={cn(checkboxStyles({ checkboxSize, state }), className)}
           {...props}
@@ -46,6 +46,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   }
 );
 
-Checkbox.displayName = "Checkbox";
+Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;

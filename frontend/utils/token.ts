@@ -1,13 +1,13 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { LoginApiResponse } from "./api";
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { LoginApiResponse } from './api';
 
 export const isTokenValid = (expiresAt: string): boolean => {
   return new Date().getTime() < Number(expiresAt);
 };
 
 export const getAccessToken = async (): Promise<string | null> => {
-  const accessToken = localStorage.getItem("accessToken");
-  const accessTokenExpiresAt = localStorage.getItem("accessTokenExpiresAt");
+  const accessToken = localStorage.getItem('accessToken');
+  const accessTokenExpiresAt = localStorage.getItem('accessTokenExpiresAt');
 
   if (
     accessToken &&
@@ -17,8 +17,8 @@ export const getAccessToken = async (): Promise<string | null> => {
     return accessToken;
   }
 
-  const refreshToken = localStorage.getItem("refreshToken");
-  const refreshTokenExpiresAt = localStorage.getItem("refreshTokenExpiresAt");
+  const refreshToken = localStorage.getItem('refreshToken');
+  const refreshTokenExpiresAt = localStorage.getItem('refreshTokenExpiresAt');
 
   if (
     refreshToken &&
@@ -28,9 +28,9 @@ export const getAccessToken = async (): Promise<string | null> => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ refreshToken }),
       }
@@ -38,10 +38,10 @@ export const getAccessToken = async (): Promise<string | null> => {
 
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem('accessToken', data.accessToken);
       if (data.accessTokenExpiresAt) {
         localStorage.setItem(
-          "accessTokenExpiresAt",
+          'accessTokenExpiresAt',
           data.accessTokenExpiresAt.toString()
         );
       }
@@ -49,10 +49,10 @@ export const getAccessToken = async (): Promise<string | null> => {
     }
   }
 
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  localStorage.removeItem("accessTokenExpiresAt");
-  localStorage.removeItem("refreshTokenExpiresAt");
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('accessTokenExpiresAt');
+  localStorage.removeItem('refreshTokenExpiresAt');
   return null;
 };
 
@@ -60,42 +60,42 @@ export const checkToken = async (router: AppRouterInstance) => {
   const token = await getAccessToken();
 
   if (token) {
-    router.push("/dashboard");
+    router.push('/dashboard');
     return;
   } else {
-    router.push("/");
+    router.push('/');
   }
 };
 
 export const setToken = async (response: LoginApiResponse) => {
-  localStorage.setItem("accessToken", response.accessToken);
-  localStorage.setItem("refreshToken", response.refreshToken);
+  localStorage.setItem('accessToken', response.accessToken);
+  localStorage.setItem('refreshToken', response.refreshToken);
   localStorage.setItem(
-    "accessTokenExpiresAt",
+    'accessTokenExpiresAt',
     response.accessTokenExpiresAt.toString()
   );
   localStorage.setItem(
-    "refreshTokenExpiresAt",
+    'refreshTokenExpiresAt',
     response.refreshTokenExpiresAt.toString()
   );
 };
 
 export const logout = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  localStorage.removeItem("accessTokenExpiresAt");
-  localStorage.removeItem("refreshTokenExpiresAt");
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('accessTokenExpiresAt');
+  localStorage.removeItem('refreshTokenExpiresAt');
 };
 
 export const getAuthHeaders = async () => {
   const accessToken = await getAccessToken();
 
   if (!accessToken) {
-    throw new Error("Unable to obtain access token");
+    throw new Error('Unable to obtain access token');
   }
 
   return {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     Authorization: `Bearer ${accessToken}`,
   };
 };

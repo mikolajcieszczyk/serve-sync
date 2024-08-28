@@ -1,8 +1,8 @@
-import { TextField, TextFieldProps } from "@/components/TextField/TextField";
-import type { Meta, StoryObj } from "@storybook/react";
+import { TextField, TextFieldProps } from '@/components/TextField/TextField';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof TextField> = {
-  title: "TextField",
+  title: 'TextField',
   component: TextField,
 };
 
@@ -12,38 +12,38 @@ type Story = StoryObj<TextFieldProps>;
 
 export const Default: Story = {
   render: () => (
-    <div className="space-y-4">
-      <TextField label="Label" placeholder="Placeholder" helpText="Help text" />
+    <div className='space-y-4'>
+      <TextField label='Label' placeholder='Placeholder' helpText='Help text' />
       <TextField
-        label="Label"
-        placeholder="Placeholder"
-        helpText="Help text"
-        className="hover:border-gray-400"
+        label='Label'
+        placeholder='Placeholder'
+        helpText='Help text'
+        className='hover:border-gray-400'
       />
       <TextField
-        label="Label"
-        placeholder="Placeholder"
-        helpText="Help text"
-        state="focus"
+        label='Label'
+        placeholder='Placeholder'
+        helpText='Help text'
+        state='focus'
       />
       <TextField
-        label="Label"
-        placeholder="Placeholder"
-        helpText="Help text"
-        state="error"
-        error="Error message"
+        label='Label'
+        placeholder='Placeholder'
+        helpText='Help text'
+        state='error'
+        error='Error message'
       />
       <TextField
-        label="Label"
-        placeholder="Placeholder"
-        helpText="Help text"
-        state="success"
+        label='Label'
+        placeholder='Placeholder'
+        helpText='Help text'
+        state='success'
       />
       <TextField
-        label="Label"
-        placeholder="Placeholder"
-        helpText="Help text"
-        state="disabled"
+        label='Label'
+        placeholder='Placeholder'
+        helpText='Help text'
+        state='disabled'
         disabled
       />
     </div>

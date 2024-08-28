@@ -1,20 +1,20 @@
-import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         const res = await fetch(
           `${process.env.LOCAL_API_URL_INTERNAL}/auth/login`,
           {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify(credentials),
-            headers: { "Content-Type": "application/json" },
+            headers: { 'Content-Type': 'application/json' },
           }
         );
 
@@ -41,10 +41,10 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/",
-    error: "/login",
+    signIn: '/',
+    error: '/login',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
 };

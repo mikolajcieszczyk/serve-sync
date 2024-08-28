@@ -1,31 +1,23 @@
-"use client";
+'use client';
 
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikHelpers,
-  FormikState,
-} from "formik";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import * as Yup from "yup";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
+import Link from 'next/link';
+import { useState } from 'react';
+import * as Yup from 'yup';
 
-import { loginOrRegisterUser } from "utils/api";
-import { Button } from "@/Button";
-import { TextField } from "@/TextField/TextField";
-import { Typography } from "@/Typography";
-import { CredentialsFormsWrapper } from "../Wrapper";
+import { Button } from '@/components/Button';
+import { TextField } from '@/components/TextField/TextField';
+import { Typography } from '@/components/Typography';
+import { loginOrRegisterUser } from 'utils/api';
+import { CredentialsFormsWrapper } from '../Wrapper';
 
 const loginDescription = {
-  header: "Adventure starts here! 🚀",
-  description: "Make your tennis courts management easy and fun!",
+  header: 'Adventure starts here! 🚀',
+  description: 'Make your tennis courts management easy and fun!',
   footerDescription: (
-    <Typography className="text-text-secondary">
-      Already have an account?{" "}
-      <Link href="/" className="text-primary-500">
+    <Typography className='text-text-secondary'>
+      Already have an account?{' '}
+      <Link href='/' className='text-primary-500'>
         Sign in instead
       </Link>
     </Typography>
@@ -41,38 +33,37 @@ interface ApiError extends Error {
 
 const formFields = [
   {
-    name: "email",
-    type: "email",
-    label: "E-mail",
-    placeholder: "E-mail",
+    name: 'email',
+    type: 'email',
+    label: 'E-mail',
+    placeholder: 'E-mail',
   },
   {
-    name: "password",
-    type: "password",
-    label: "Password",
-    placeholder: "Password",
+    name: 'password',
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Password',
   },
   {
-    name: "confirmPassword",
-    type: "password",
-    label: "Confirm Password",
-    placeholder: "Confirm password",
+    name: 'confirmPassword',
+    type: 'password',
+    label: 'Confirm Password',
+    placeholder: 'Confirm password',
   },
 ];
 
 const loginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/register`;
 
 export function RegisterForm() {
-  const router = useRouter();
-  const [apiError, setApiError] = useState<string>("");
-  const [apiSuccess, setApiSuccess] = useState<string>("");
+  const [apiError, setApiError] = useState<string>('');
+  const [apiSuccess, setApiSuccess] = useState<string>('');
 
   const handleRegister = async (
     email: string,
     password: string,
-    resetForm: (nextState?: Partial<FormikState<any>> | undefined) => void
+    resetForm: () => void
   ) => {
-    setApiError("");
+    setApiError('');
     try {
       const response = await loginOrRegisterUser(loginUrl, email, password);
 
@@ -81,27 +72,27 @@ export function RegisterForm() {
         response
       );
 
-      setApiSuccess("User registered successfully!");
+      setApiSuccess('User registered successfully!');
       resetForm();
     } catch (error) {
       const apiError = error as ApiError;
 
-      setApiError(apiError.info?.message || "Login failed");
+      setApiError(apiError.info?.message || 'Login failed');
     }
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address").required("Required"),
-    password: Yup.string().required("Required"),
+    email: Yup.string().email('Invalid email address').required('Required'),
+    password: Yup.string().required('Required'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .required("Confirm Password is required"),
+      .oneOf([Yup.ref('password')], 'Passwords must match')
+      .required('Confirm Password is required'),
   });
 
   return (
     <CredentialsFormsWrapper description={loginDescription}>
       <Formik
-        initialValues={{ email: "", password: "", confirmPassword: "" }}
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
         validationSchema={validationSchema}
         onSubmit={(
           values,
@@ -113,7 +104,7 @@ export function RegisterForm() {
       >
         {({ isSubmitting, touched, errors }) => {
           return (
-            <Form className="w-full">
+            <Form className='w-full'>
               {formFields.map((field) => (
                 <div key={field.name}>
                   <Field
@@ -122,33 +113,33 @@ export function RegisterForm() {
                     as={TextField}
                     placeholder={field.placeholder}
                     helpText={
-                      <ErrorMessage name={field.name} component="div" />
+                      <ErrorMessage name={field.name} component='div' />
                     }
                     state={
                       touched[field.name] && errors[field.name]
-                        ? "error"
-                        : "default"
+                        ? 'error'
+                        : 'default'
                     }
-                    className="w-full p-2 mb-4 border rounded"
+                    className='mb-4 w-full rounded border p-2'
                   />
                 </div>
               ))}
               {apiError && (
-                <Typography className="mb-4" color="error">
+                <Typography className='mb-4' color='error'>
                   {apiError}
                 </Typography>
               )}
 
               {apiSuccess && (
-                <Typography className="mb-4" color="success">
+                <Typography className='mb-4' color='success'>
                   {apiSuccess}
                 </Typography>
               )}
 
               <Button
-                type="submit"
+                type='submit'
                 disabled={isSubmitting}
-                className="w-full bg-gray-800"
+                className='w-full bg-gray-800'
               >
                 Sign Up
               </Button>

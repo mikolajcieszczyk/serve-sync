@@ -1,6 +1,6 @@
-import { VariantProps, cva } from "class-variance-authority";
-import { ReactNode } from "react";
-import cn from "utils/cn";
+import { VariantProps, cva } from 'class-variance-authority';
+import { ReactNode } from 'react';
+import cn from 'utils/cn';
 
 export interface BoxProps extends VariantProps<typeof boxVariants> {
   children: ReactNode;
@@ -8,21 +8,21 @@ export interface BoxProps extends VariantProps<typeof boxVariants> {
 }
 
 export const boxVariants = cva(
-  "flex flex-col items-center rounded-md px-4 py-2 shadow-md bg-white",
+  'flex flex-col items-center rounded-md bg-white px-4 py-2 shadow-md',
   {
     variants: {
       variant: {
-        default: "",
-        noBoxShadow: "shadow-none",
+        default: '',
+        noBoxShadow: 'shadow-none',
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: 'default',
     },
   }
 );
 
-export function Box({ children, variant, className, ...props }: BoxProps) {
+export function Box({ children, variant, className }: BoxProps) {
   return (
     <div className={cn(boxVariants({ variant }), className)}>{children}</div>
   );

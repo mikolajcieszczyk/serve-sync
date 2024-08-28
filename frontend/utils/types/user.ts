@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 export enum Gender {
-  MALE = "MALE",
-  FEMALE = "FEMALE",
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
 }
 
 export enum UserRole {
-  ADMIN = "admin",
-  CLIENT = "client",
-  COACH = "coach",
-  OFFICE_EMPLOYEE = "office_employee",
-  OTHER = "other",
+  ADMIN = 'admin',
+  CLIENT = 'client',
+  COACH = 'coach',
+  OFFICE_EMPLOYEE = 'office_employee',
+  OTHER = 'other',
 }
 
 export interface User {

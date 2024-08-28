@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 interface LoadingContextProps {
   isLoading: boolean;
@@ -30,7 +30,7 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useLoading = (): LoadingContextProps => {
   const context = useContext(LoadingContext);
   if (context === undefined) {
-    throw new Error("useLoading must be used within a LoadingProvider");
+    throw new Error('useLoading must be used within a LoadingProvider');
   }
   return context;
 };
