@@ -1,24 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { useState } from 'react';
-import { CredentialsFormsWrapper } from '../FormWrapper/FormWrapper';
-import { Button } from '@/componentsButton';
-import { Typography } from '@/componentsTypography';
-
-const loginDescription = {
-  header: 'Welcome to ServeSync!',
-  description: 'Please sign-in to your account and start the adventure',
-  footerDescription: (
-    <Typography className='text-text-secondary'>
-      New on our platform?{' '}
-      <Link href='/register' className='text-primary-500'>
-        Create an account
-      </Link>
-    </Typography>
-  ),
-};
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
@@ -40,15 +23,16 @@ export function LoginForm() {
   };
 
   return (
-    <CredentialsFormsWrapper description={loginDescription}>
-      <div className='flex items-center'>
+    <div className='flex min-h-screen items-center justify-center bg-gray-100'>
+      <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
+        <h2 className='mb-4 text-2xl font-bold'>Sign in</h2>
         <form onSubmit={handleSubmit}>
           <input
             type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder='E-mail'
-            className='mb-4 w-full rounded border border-gray-300 p-2'
+            placeholder='Email'
+            className='mb-4 w-full rounded border p-2'
             required
           />
           <input
@@ -56,20 +40,22 @@ export function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Password'
-            className='mb-4 w-full rounded border border-gray-300 p-2'
+            className='mb-4 w-full rounded border p-2'
             required
           />
-          <Button type='submit' className='w-full bg-gray-800'>
-            Login
-          </Button>
+          <button
+            type='submit'
+            className='w-full rounded bg-blue-500 p-2 text-white'
+          >
+            Sign in
+          </button>
         </form>
-
         {error && (
-          <Typography className='mb-4' color='error'>
+          <span className='mb-4' color='error'>
             {error}
-          </Typography>
+          </span>
         )}
       </div>
-    </CredentialsFormsWrapper>
+    </div>
   );
 }

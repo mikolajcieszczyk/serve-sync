@@ -1,28 +1,10 @@
 'use client';
 
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
-import Link from 'next/link';
 import { useState } from 'react';
 import * as Yup from 'yup';
 
-import { Button } from '@/components/Button';
-import { TextField } from '@/components/TextField/TextField';
-import { Typography } from '@/components/Typography';
 import { loginOrRegisterUser } from 'utils/api';
-import { CredentialsFormsWrapper } from '../FormWrapper/FormWrapper';
-
-const loginDescription = {
-  header: 'Adventure starts here! 🚀',
-  description: 'Make your tennis courts management easy and fun!',
-  footerDescription: (
-    <Typography className='text-text-secondary'>
-      Already have an account?{' '}
-      <Link href='/' className='text-primary-500'>
-        Sign in instead
-      </Link>
-    </Typography>
-  ),
-};
 
 interface ApiError extends Error {
   info?: {
@@ -90,63 +72,66 @@ export function RegisterForm() {
   });
 
   return (
-    <CredentialsFormsWrapper description={loginDescription}>
-      <Formik
-        initialValues={{ email: '', password: '', confirmPassword: '' }}
-        validationSchema={validationSchema}
-        onSubmit={(
-          values,
-          { setSubmitting, resetForm }: FormikHelpers<any>
-        ) => {
-          handleRegister(values.email, values.password, resetForm);
-          setSubmitting(false);
-        }}
-      >
-        {({ isSubmitting, touched, errors }) => {
-          return (
-            <Form className='w-full'>
-              {formFields.map((field) => (
-                <div key={field.name}>
-                  <Field
-                    name={field.name}
-                    type={field.type}
-                    as={TextField}
-                    placeholder={field.placeholder}
-                    helpText={
-                      <ErrorMessage name={field.name} component='div' />
-                    }
-                    state={
-                      touched[field.name] && errors[field.name]
-                        ? 'error'
-                        : 'default'
-                    }
-                    className='mb-4 w-full rounded border p-2'
-                  />
-                </div>
-              ))}
-              {apiError && (
-                <Typography className='mb-4' color='error'>
-                  {apiError}
-                </Typography>
-              )}
+    <div className='flex min-h-screen items-center justify-center bg-gray-100'>
+      <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
+        <h2 className='mb-4 text-2xl font-bold'>Sign up</h2>
 
-              {apiSuccess && (
-                <Typography className='mb-4' color='success'>
-                  {apiSuccess}
-                </Typography>
-              )}
+        <Formik
+          initialValues={{ email: '', password: '', confirmPassword: '' }}
+          validationSchema={validationSchema}
+          onSubmit={(
+            values,
+            { setSubmitting, resetForm }: FormikHelpers<any>
+          ) => {
+            handleRegister(values.email, values.password, resetForm);
+            setSubmitting(false);
+          }}
+        >
+          {({ isSubmitting, touched, errors }) => {
+            return (
+              <Form className='w-full'>
+                {formFields.map((field) => (
+                  <div key={field.name}>
+                    <Field
+                      name={field.name}
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      helpText={
+                        <ErrorMessage name={field.name} component='div' />
+                      }
+                      state={
+                        touched[field.name] && errors[field.name]
+                          ? 'error'
+                          : 'default'
+                      }
+                      className='mb-4 w-full rounded border p-2'
+                    />
+                  </div>
+                ))}
+                {apiError && (
+                  <span className='mb-4' color='error'>
+                    {apiError}
+                  </span>
+                )}
 
-              <Button
-                type='submit'
-                disabled={isSubmitting}
-                className='w-full bg-gray-800'
-              >
-                Sign Up
-              </Button>
-            </Form>
-          );
-        }}
-      </Formik>
-    </CredentialsFormsWrapper>
+                {apiSuccess && (
+                  <span className='mb-4' color='success'>
+                    {apiSuccess}
+                  </span>
+                )}
+
+                <button
+                  type='submit'
+                  disabled={isSubmitting}
+                  className='w-full rounded bg-blue-500 p-2 text-white'
+                >
+                  Sign Up
+                </button>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
+    </div>
   );
 }

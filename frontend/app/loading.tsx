@@ -1,12 +1,10 @@
-import { Typography } from "@components/Typography";
-
 export default function Loading() {
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-60'>
+    <div className='fixed inset-0 z-50 flex items-center justify-center bg-white'>
       <div className='flex items-center'>
-        <Typography variant='h2' className='mr-4' color='secondary'>
+        <span className='mr-4' color='secondary'>
           Loading
-        </Typography>
+        </span>
         <svg
           className='size-8 animate-spin text-gray-800'
           xmlns='http://www.w3.org/2000/svg'

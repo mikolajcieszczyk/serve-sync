@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "esnext",
     "baseUrl": ".",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,8 +26,12 @@
       }
     ],
     "paths": {
-      "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ]
     }
   },
   "include": [
@@ -35,7 +43,10 @@
     "next-env.d.ts",
     "types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "components/Form/LoginButton"  ],
-  "exclude": ["node_modules"]
+    "**/*.tsx",
+    "components/Form/LoginButton"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
