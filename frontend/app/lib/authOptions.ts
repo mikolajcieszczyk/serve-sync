@@ -9,15 +9,16 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const res = await fetch("http:/sync-api:4000/auth/login", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
+        const res = await fetch(
+          `${process.env.LOCAL_API_URL_INTERNAL}/auth/login`,
+          {
+            method: "POST",
+            body: JSON.stringify(credentials),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
 
         const user = await res.json();
-
-        console.log(user);
 
         if (res.ok && user) {
           return user;
@@ -38,7 +39,11 @@ export const authOptions = {
       session.accessToken = token.accessToken;
       return session;
     },
+    // redirect({ url, baseUrl }) {
+    //   return url.startsWith(baseUrl) ? url : `${baseUrl}/dashboard`;
+    // },
   },
+
   session: {
     strategy: "jwt",
   },

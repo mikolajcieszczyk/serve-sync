@@ -1,39 +1,26 @@
-"use client";
-
-import { signIn, signOut, useSession } from "next-auth/react";
+import { LoginForm } from "@/Form/LoginForm/LoginForm";
+import { getServerSession } from "next-auth";
 import React from "react";
+import { authOptions } from "./lib/authOptions";
+import { redirect } from "next/navigation";
 
-export default function Page({ children }: { children: React.ReactNode }) {
-  // Pobieramy sesję użytkownika, aby sprawdzić, czy jest zalogowany
-  const { data: session } = useSession();
+export default async function Page({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // const { data: session } = useSession();
+  const session = await getServerSession(authOptions as any);
 
   console.log(`🙈 --> file: page.tsx:10 --> Page --> session:`, session);
 
+  if (session) {
+    redirect("/dashboard"); // Przekierowanie na stronę /dashboard
+  }
+
   return (
-    <div className="p-2">
-      {session ? (
-        <div>
-          <p>Welcome, {session.user?.email}</p>
-          <button
-            className="bg-blue-500 p-2 rounded text-white"
-            onClick={() => signOut()}
-          >
-            Sign out
-          </button>
-          {/* Możesz dodać tu przycisk wylogowania lub inne elementy */}
-        </div>
-      ) : (
-        <div>
-          <p>You are not logged in.</p>
-          {/* Przycisk lub formularz logowania */}
-          <button
-            className="bg-blue-500 p-2 rounded text-white"
-            onClick={() => signIn()}
-          >
-            Sign in
-          </button>
-        </div>
-      )}
+    <div className="mt-auto">
+      <LoginForm />
     </div>
   );
 }

@@ -26,7 +26,7 @@ export function CredentialsFormsWrapper({
 }: FormWrapperProps) {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col relative">
-      <Box className="w-full md:w-2/3 lg:w-2/3 xl:w-1/3 h-full md:h-5/6 p-12 flex items-center justify-between relative">
+      <Box className="w-full md:w-1/2 lg:w-1/3 p-12 flex items-center gap-4 relative">
         <div
           className="hidden md:block absolute -top-8 -left-8 w-48 h-48 bg-blue-100 rounded-md"
           style={{ zIndex: -1 }}
