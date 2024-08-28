@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { CredentialsFormsWrapper } from '../Wrapper';
+import { CredentialsFormsWrapper } from '../FormWrapper/FormWrapper';
 import { Button } from '@/componentsButton';
 import { Typography } from '@/componentsTypography';
 

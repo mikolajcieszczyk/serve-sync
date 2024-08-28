@@ -9,7 +9,7 @@ import { Button } from '@/components/Button';
 import { TextField } from '@/components/TextField/TextField';
 import { Typography } from '@/components/Typography';
 import { loginOrRegisterUser } from 'utils/api';
-import { CredentialsFormsWrapper } from '../Wrapper';
+import { CredentialsFormsWrapper } from '../FormWrapper/FormWrapper';
 
 const loginDescription = {
   header: 'Adventure starts here! 🚀',

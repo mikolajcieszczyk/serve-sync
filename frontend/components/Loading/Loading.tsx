@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLoading } from 'context/LoadingContext';
-import { LoadingSpinner } from './LoadingSpinner';
+import { LoadingSpinner } from './LoadingSpinner/LoadingSpinner';
 
 const Loader: React.FC = () => {
   const { isLoading } = useLoading();

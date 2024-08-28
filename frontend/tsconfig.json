@@ -36,6 +36,6 @@
     "types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/Form/LoginButton"  ],
   "exclude": ["node_modules"]
 }
