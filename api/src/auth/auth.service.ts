@@ -6,13 +6,13 @@ import {
   UnauthorizedException,
   forwardRef,
 } from '@nestjs/common';
-import { LoginDto } from './dto/login.dto';
-import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from './jwt/jwt-payload.interface';
-import { UsersService } from 'src/users/users.service';
-import { UserEntity } from 'src/users/entities/user.entity';
+import * as bcrypt from 'bcryptjs';
 import { RegisterUserDto } from 'src/users/dto/register-user.dto';
+import { UserEntity } from 'src/users/entities/user.entity';
+import { UsersService } from 'src/users/users.service';
+import { LoginDto } from './dto/login.dto';
+import { JwtPayload } from './jwt/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {

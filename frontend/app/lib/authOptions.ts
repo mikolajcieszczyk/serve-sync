@@ -1,6 +1,8 @@
+import { NextAuthOptions, Session } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -28,15 +30,16 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
       }
       return token;
     },
-    async session({ session, token }) {
-      session.accessToken = token.accessToken;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      session.accessToken = token.accessToken as string;
+      session.refreshToken = token.refreshToken as string;
       return session;
     },
   },
@@ -46,5 +49,9 @@ export const authOptions = {
   },
   session: {
     strategy: 'jwt',
+    maxAge: 60 * 60, // 1 hour session duration
+  },
+  jwt: {
+    maxAge: 60 * 60, // 1 hour token duration
   },
 };
