@@ -1,7 +1,7 @@
 'use client';
 
-import { NextUiProvider } from 'app/nextui-provider';
 import { SessionProvider } from 'next-auth/react';
+import { NextUiProvider } from 'providers/nextui-provider';
 import { ReactNode } from 'react';
 
 export const AppWrapper = ({
