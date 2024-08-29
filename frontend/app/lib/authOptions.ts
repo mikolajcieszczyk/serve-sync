@@ -3,6 +3,7 @@ import { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 async function refreshAccessToken(token: JWT): Promise<JWT> {
+  console.log('token refreshing kurna');
   try {
     const response = await fetch(
       `${process.env.LOCAL_API_URL_INTERNAL}/auth/refresh-token`,
@@ -20,6 +21,8 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
     if (!response.ok) {
       throw refreshedTokens;
     }
+
+    console.log('token REFRESHED kurna');
 
     return {
       ...token,
@@ -79,9 +82,11 @@ export const authOptions: NextAuthOptions = {
 
       if (Date.now() > (token.refreshTokenExpiresAt as number)) {
         return { ...token, error: 'RefreshTokenExpired' };
+        console.log('RefreshTokenExpired');
       }
 
       if (Date.now() < (token.accessTokenExpiresAt as number)) {
+        console.log('token GIT');
         return token;
       }
 
@@ -90,6 +95,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }: { session: Session; token: JWT }) {
       if (token.error === 'RefreshTokenExpired') {
         session.error = 'Your session has expired. Please log in again.';
+        console.log('SESSION EXPIRED LOGOUT');
       }
 
       session.accessToken = token.accessToken as string;
@@ -106,9 +112,9 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 7 * 24 * 60 * 60, // Maximum session duration (7 days)
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   jwt: {
-    maxAge: 7 * 24 * 60 * 60, // Maximum JWT token lifetime (7 days)
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
 };

@@ -76,8 +76,8 @@ export class AuthService {
       email,
       accessToken,
       refreshToken,
-      accessTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000, // 7 days duration
-      refreshTokenExpiresAt: Date.now() + 30 * 24 * 3600 * 1000, // 30 days duration
+      accessTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000, // 7 days
+      refreshTokenExpiresAt: Date.now() + 30 * 24 * 3600 * 1000, // 30 days
     };
   }
 
