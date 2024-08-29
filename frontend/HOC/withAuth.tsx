@@ -9,7 +9,7 @@ const withAuth = <TProps extends object>(
 ) => {
   const WithAuthComponent: React.FC<TProps> = (props) => {
     const router = useRouter();
-    const { status } = useSession(); // Pobieramy sesję użytkownika
+    const { status } = useSession();
 
     useEffect(() => {
       if (status === 'unauthenticated') {
