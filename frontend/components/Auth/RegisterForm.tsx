@@ -71,6 +71,7 @@ export function RegisterForm() {
   return (
     <div className='flex min-h-screen flex-col items-center justify-center gap-2 bg-gray-100'>
       <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
+        <h2 className='mb-4 text-3xl font-bold text-blue-500'>ServeSync</h2>
         <h2 className='mb-4 text-2xl font-bold'>Sign up</h2>
 
         <Formik
