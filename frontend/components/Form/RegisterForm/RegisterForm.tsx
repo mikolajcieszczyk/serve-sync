@@ -47,20 +47,16 @@ export function RegisterForm() {
     resetForm: () => void
   ) => {
     setApiError('');
-    try {
-      const response = await loginOrRegisterUser(loginUrl, email, password);
 
-      console.log(
-        `🙈 --> file: RegisterForm.tsx:67 --> handleRegister --> response:`,
-        response
-      );
+    try {
+      await loginOrRegisterUser(loginUrl, email, password);
 
       setApiSuccess('User registered successfully!');
       resetForm();
     } catch (error) {
       const apiError = error as ApiError;
 
-      setApiError(apiError.info?.message || 'Login failed');
+      setApiError(apiError.info?.message || 'Register failed');
     }
   };
 
@@ -88,49 +84,39 @@ export function RegisterForm() {
             setSubmitting(false);
           }}
         >
-          {({ isSubmitting, touched, errors }) => {
-            return (
-              <Form className='w-full'>
-                {formFields.map((field) => (
-                  <div key={field.name}>
-                    <Field
-                      name={field.name}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      helpText={
-                        <ErrorMessage name={field.name} component='div' />
-                      }
-                      state={
-                        touched[field.name] && errors[field.name]
-                          ? 'error'
-                          : 'default'
-                      }
-                      className='mb-4 w-full rounded border p-2'
-                    />
-                  </div>
-                ))}
-                {apiError && (
-                  <span className='mb-4' color='error'>
-                    {apiError}
-                  </span>
-                )}
+          {({ isSubmitting }) => (
+            <Form className='w-full'>
+              {formFields.map((field) => (
+                <div key={field.name} className='mb-4'>
+                  <Field
+                    name={field.name}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    className='w-full rounded border p-2'
+                  />
+                  <ErrorMessage
+                    name={field.name}
+                    component='div'
+                    className='text-red-500'
+                  />
+                </div>
+              ))}
 
-                {apiSuccess && (
-                  <span className='mb-4' color='success'>
-                    {apiSuccess}
-                  </span>
-                )}
+              {apiError && <div className='mb-4 text-red-500'>{apiError}</div>}
 
-                <button
-                  type='submit'
-                  disabled={isSubmitting}
-                  className='w-full rounded bg-blue-500 p-2 text-white'
-                >
-                  Sign Up
-                </button>
-              </Form>
-            );
-          }}
+              {apiSuccess && (
+                <div className='mb-4 text-green-500'>{apiSuccess}</div>
+              )}
+
+              <button
+                type='submit'
+                disabled={isSubmitting}
+                className='w-full rounded bg-blue-500 p-2 text-white'
+              >
+                Sign Up
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
       <Link href='/'>

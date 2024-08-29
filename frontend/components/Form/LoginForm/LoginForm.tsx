@@ -1,61 +1,91 @@
 'use client';
 
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import * as Yup from 'yup';
 
 export function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string>('');
+  const [apiError, setApiError] = useState<string>('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email address').required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  const handleSubmit = async (
+    values: { email: string; password: string },
+    // eslint-disable-next-line no-unused-vars
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+  ) => {
+    setApiError('');
 
     const result = await signIn('credentials', {
-      email,
-      password,
+      email: values.email,
+      password: values.password,
       callbackUrl: '/dashboard',
     });
 
     if (result?.error) {
-      setError('Login failed. Please check your details.');
+      setApiError('Login failed. Please check your details.');
     }
+
+    setSubmitting(false);
   };
 
   return (
     <div className='flex min-h-screen flex-col items-center justify-center gap-2 bg-gray-100'>
       <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
         <h2 className='mb-4 text-2xl font-bold'>Sign in</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder='Email'
-            className='mb-4 w-full rounded border p-2'
-            required
-          />
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder='Password'
-            className='mb-4 w-full rounded border p-2'
-            required
-          />
-          <button
-            type='submit'
-            className='w-full rounded bg-blue-500 p-2 text-white'
-          >
-            Sign in
-          </button>
-        </form>
-        {error && (
-          <span className='mb-4' color='error'>
-            {error}
-          </span>
-        )}
+
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <div className='mb-4'>
+                <Field
+                  type='email'
+                  name='email'
+                  placeholder='Email'
+                  className='w-full rounded border p-2'
+                />
+                <ErrorMessage
+                  name='email'
+                  component='div'
+                  className='text-red-500'
+                />
+              </div>
+
+              <div className='mb-4'>
+                <Field
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                  className='w-full rounded border p-2'
+                />
+                <ErrorMessage
+                  name='password'
+                  component='div'
+                  className='text-red-500'
+                />
+              </div>
+
+              <button
+                type='submit'
+                className='w-full rounded bg-blue-500 p-2 text-white'
+                disabled={isSubmitting}
+              >
+                Sign in
+              </button>
+            </Form>
+          )}
+        </Formik>
+
+        {apiError && <div className='mt-4 text-red-500'>{apiError}</div>}
       </div>
 
       <Link href='/register'>
