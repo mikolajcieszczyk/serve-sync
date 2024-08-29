@@ -1,4 +1,4 @@
-import { RegisterForm } from "@components/Form/RegisterForm/RegisterForm";
+import { RegisterForm } from '@components/molecules/Auth/RegisterForm';
 
 export default async function Page() {
   return (

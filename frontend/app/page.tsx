@@ -1,8 +1,7 @@
+import { LoginForm } from '@components/molecules/Auth/LoginForm';
 import { getServerSession } from 'next-auth';
-import React from 'react';
-import { authOptions } from './lib/authOptions';
 import { redirect } from 'next/navigation';
-import { LoginForm } from '@components/Form/LoginForm/LoginForm';
+import { authOptions } from './lib/authOptions';
 
 export default async function Page() {
   const session = await getServerSession(authOptions as any);
