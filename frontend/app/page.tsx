@@ -6,8 +6,6 @@ import { authOptions } from './lib/authOptions';
 export default async function Page() {
   const session = await getServerSession(authOptions as any);
 
-  console.log(`🙈 --> file: page.tsx:10 --> Page --> session:`, session);
-
   if (session) {
     redirect('/dashboard');
   }

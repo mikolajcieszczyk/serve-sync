@@ -1,6 +1,7 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
+import { CustomCheckSessionWrapper } from 'providers/CustomCheckSessionWrapper';
 import { NextUiProvider } from 'providers/nextui-provider';
 import { ReactNode } from 'react';
 
@@ -11,9 +12,11 @@ export const AppWrapper = ({
 }): JSX.Element => {
   return (
     <SessionProvider>
-      <NextUiProvider>
-        <div>{children}</div>
-      </NextUiProvider>
+      <CustomCheckSessionWrapper>
+        <NextUiProvider>
+          <div>{children}</div>
+        </NextUiProvider>
+      </CustomCheckSessionWrapper>
     </SessionProvider>
   );
 };

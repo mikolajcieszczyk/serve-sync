@@ -77,6 +77,10 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
+      if (Date.now() > (token.refreshTokenExpiresAt as number)) {
+        return { ...token, error: 'RefreshTokenExpired' };
+      }
+
       if (Date.now() < (token.accessTokenExpiresAt as number)) {
         return token;
       }
@@ -84,9 +88,13 @@ export const authOptions: NextAuthOptions = {
       return await refreshAccessToken(token);
     },
     async session({ session, token }: { session: Session; token: JWT }) {
+      if (token.error === 'RefreshTokenExpired') {
+        session.error = 'Your session has expired. Please log in again.';
+      }
+
       session.accessToken = token.accessToken as string;
       session.refreshToken = token.refreshToken as string;
-      session.error = token.error as string;
+      session.error = token.error;
       session.accessTokenExpiresAt = token.accessTokenExpiresAt as number;
       session.refreshTokenExpiresAt = token.refreshTokenExpiresAt as number;
       return session;
@@ -98,9 +106,9 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 7 * 24 * 60 * 60, // 7 days
+    maxAge: 7 * 24 * 60 * 60, // Maximum session duration (7 days)
   },
   jwt: {
-    maxAge: 7 * 24 * 60 * 60, // 7 days
+    maxAge: 7 * 24 * 60 * 60, // Maximum JWT token lifetime (7 days)
   },
 };
