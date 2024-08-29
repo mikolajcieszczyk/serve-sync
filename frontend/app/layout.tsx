@@ -1,7 +1,7 @@
+import { AppWrapper } from '@components/molecules/AppWrapper/AppWrapper';
 import type { Metadata } from 'next';
 import { Public_Sans } from 'next/font/google';
 import './globals.css';
-import { AppWrapper } from '@components/molecules/AppWrapper/AppWrapper';
 
 const publicSans = Public_Sans({
   variable: '--main-font',
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='h-screen w-screen text-base'>
-      <body className={publicSans.className}>
+      <body className={publicSans.className} suppressHydrationWarning={true}>
         <AppWrapper>{children}</AppWrapper>
       </body>
     </html>

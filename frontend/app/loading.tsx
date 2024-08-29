@@ -2,11 +2,11 @@ export default function Loading() {
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-white'>
       <div className='flex items-center'>
-        <span className='mr-4' color='secondary'>
+        <span className='mr-4 text-blue-500' color='secondary'>
           Loading
         </span>
         <svg
-          className='size-8 animate-spin text-gray-800'
+          className='size-8 animate-spin text-blue-500'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
