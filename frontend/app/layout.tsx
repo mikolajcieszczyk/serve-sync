@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Public_Sans } from 'next/font/google';
 import './globals.css';
-import { AppWrapper } from '@components/AppWrapper/AppWrapper';
+import { AppWrapper } from '@components/molecules/AppWrapper/AppWrapper';
 
 const publicSans = Public_Sans({
   variable: '--main-font',
