@@ -69,15 +69,15 @@ export class AuthService {
     }
 
     const payload: JwtPayload = { email: user.email };
-    const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
 
     return {
       email,
       accessToken,
       refreshToken,
-      accessTokenExpiresAt: Date.now() + 3600 * 1000,
-      refreshTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000,
+      accessTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000, // 7 days duration
+      refreshTokenExpiresAt: Date.now() + 30 * 24 * 3600 * 1000, // 30 days duration
     };
   }
 
