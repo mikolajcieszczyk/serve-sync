@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export function LoginForm() {
@@ -23,7 +24,7 @@ export function LoginForm() {
   };
 
   return (
-    <div className='flex min-h-screen items-center justify-center bg-gray-100'>
+    <div className='flex min-h-screen flex-col items-center justify-center gap-2 bg-gray-100'>
       <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
         <h2 className='mb-4 text-2xl font-bold'>Sign in</h2>
         <form onSubmit={handleSubmit}>
@@ -56,6 +57,10 @@ export function LoginForm() {
           </span>
         )}
       </div>
+
+      <Link href='/register'>
+        <h2 className='font-bold text-blue-500 underline'>Sign up here</h2>
+      </Link>
     </div>
   );
 }

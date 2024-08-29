@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { useLoading } from 'context/LoadingContext';
+import React from 'react';
 import { LoadingSpinner } from './LoadingSpinner/LoadingSpinner';
 
 const Loader: React.FC = () => {
@@ -12,7 +12,7 @@ const Loader: React.FC = () => {
   }
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
+    <div className='fixed inset-0 z-50 flex items-center justify-center'>
       <LoadingSpinner />
     </div>
   );

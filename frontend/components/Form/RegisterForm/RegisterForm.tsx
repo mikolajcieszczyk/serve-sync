@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 
+import Link from 'next/link';
 import { loginOrRegisterUser } from 'utils/api';
 
 interface ApiError extends Error {
@@ -72,7 +73,7 @@ export function RegisterForm() {
   });
 
   return (
-    <div className='flex min-h-screen items-center justify-center bg-gray-100'>
+    <div className='flex min-h-screen flex-col items-center justify-center gap-2 bg-gray-100'>
       <div className='w-full max-w-md rounded bg-white p-6 shadow-md'>
         <h2 className='mb-4 text-2xl font-bold'>Sign up</h2>
 
@@ -132,6 +133,9 @@ export function RegisterForm() {
           }}
         </Formik>
       </div>
+      <Link href='/'>
+        <h2 className='font-bold text-blue-500 underline'>Sign in here</h2>
+      </Link>
     </div>
   );
 }
