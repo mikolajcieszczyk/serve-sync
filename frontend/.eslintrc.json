@@ -9,10 +9,25 @@
     "next",
     "prettier"
   ],
-  "plugins": ["react-hooks", "jsx-a11y"],
+  "plugins": ["react-hooks"],
   "rules": {
-    "no-unused-vars": 1,
     "react/react-in-jsx-scope": "off",
-    "no-console": "warn"
+    "no-console": "warn",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "no-unused-vars": "warn",
+    "object-shorthand": "warn",
+    "quote-props": ["warn", "as-needed"],
+
+    "react/jsx-fragments": ["warn", "syntax"],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off"
   }
 }
