@@ -83,13 +83,16 @@ export class AuthService {
 
   async refreshAccessToken(
     refreshToken: string,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; accessTokenExpiresAt: number }> {
     try {
       const payload = this.jwtService.verify(refreshToken);
       const newPayload: JwtPayload = { email: payload.email };
-      const accessToken = this.jwtService.sign(newPayload, { expiresIn: '1h' });
+      const accessToken = this.jwtService.sign(newPayload, { expiresIn: '7d' });
 
-      return { accessToken };
+      return {
+        accessToken,
+        accessTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000,
+      };
     } catch (e) {
       throw new UnauthorizedException('Invalid refresh token');
     }
