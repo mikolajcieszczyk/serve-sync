@@ -11,8 +11,6 @@ export const CustomCheckSessionWrapper = ({
 }): JSX.Element => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   useEffect(() => {
     if (session?.error === 'RefreshTokenExpired') {
       signOut();
