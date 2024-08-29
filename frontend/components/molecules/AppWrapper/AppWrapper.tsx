@@ -1,5 +1,6 @@
 'use client';
 
+import { NextUiProvider } from 'app/nextui-provider';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 
@@ -10,7 +11,9 @@ export const AppWrapper = ({
 }): JSX.Element => {
   return (
     <SessionProvider>
-      <div>{children}</div>
+      <NextUiProvider>
+        <div>{children}</div>
+      </NextUiProvider>
     </SessionProvider>
   );
 };
