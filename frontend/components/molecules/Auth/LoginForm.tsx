@@ -67,6 +67,7 @@ export function LoginForm() {
                   name='password'
                   placeholder='Password'
                   className='w-full rounded border p-2'
+                  autoComplete='on'
                 />
                 <ErrorMessage
                   name='password'
