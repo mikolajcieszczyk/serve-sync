@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 interface LoadingContextProps {
   isLoading: boolean;
+  // eslint-disable-next-line no-unused-vars
   setLoadingSpinner: (state: boolean) => void;
 }
 
