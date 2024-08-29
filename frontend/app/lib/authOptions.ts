@@ -2,7 +2,6 @@ import { NextAuthOptions, Session } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-// Funkcja do odświeżania tokena za pomocą refreshToken
 async function refreshAccessToken(token: JWT): Promise<JWT> {
   try {
     const response = await fetch(
@@ -25,7 +24,7 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
     return {
       ...token,
       accessToken: refreshedTokens.accessToken,
-      accessTokenExpiresAt: refreshedTokens.accessTokenExpiresAt, // Nowy czas wygaśnięcia
+      accessTokenExpiresAt: refreshedTokens.accessTokenExpiresAt,
     };
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -70,7 +69,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: any }) {
-      // Inicjalna autoryzacja
       if (user) {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
@@ -79,12 +77,10 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      // Sprawdź, czy accessToken wygasł
       if (Date.now() < (token.accessTokenExpiresAt as number)) {
         return token;
       }
 
-      // Token wygasł, odśwież go
       return await refreshAccessToken(token);
     },
     async session({ session, token }: { session: Session; token: JWT }) {
@@ -102,9 +98,9 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 7 * 24 * 60 * 60, // Maksymalny czas trwania sesji w sekundach (7 dni)
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
   jwt: {
-    maxAge: 7 * 24 * 60 * 60, // Maksymalny czas trwania tokena JWT w sekundach (7 dni)
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
 };
