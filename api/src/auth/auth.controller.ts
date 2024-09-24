@@ -7,10 +7,10 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { RegisterUserDto } from 'src/users/dto/register-user.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
-import { RegisterUserDto } from 'src/users/dto/register-user.dto';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -25,7 +25,10 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() req: RegisterUserDto) {
+  async register(
+    @Body() req: RegisterUserDto,
+    // , @UserData() user: User
+  ) {
     const userData = {
       email: req.email,
       password: req.password,
