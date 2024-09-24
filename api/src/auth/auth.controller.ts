@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { RegisterUserDto } from 'src/users/dto/register-user.dto';
+import { UserRole } from 'src/users/entities/user.entity';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -25,13 +26,11 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(
-    @Body() req: RegisterUserDto,
-    // , @UserData() user: User
-  ) {
+  async register(@Body() req: RegisterUserDto) {
     const userData = {
       email: req.email,
       password: req.password,
+      role: req.role || UserRole.CLIENT,
     };
 
     return this.authService.register(userData);

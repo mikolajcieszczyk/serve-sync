@@ -19,12 +19,13 @@ export class UsersService {
 
   async registerUser(registerUserDto: RegisterUserDto): Promise<UserEntity> {
     try {
-      const { email, password } = registerUserDto;
+      const { email, password, role } = registerUserDto;
       const passwordHash = await bcrypt.hash(password, 10);
 
       const user = this.usersRepository.create({
         email,
         passwordHash,
+        role,
       });
 
       return await this.usersRepository.save(user);

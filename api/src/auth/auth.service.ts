@@ -43,9 +43,11 @@ export class AuthService {
       }
 
       const user = await this.usersService.registerUser(userData);
+
       return {
         email: user.email,
         password: '',
+        role: user.role,
       };
     } catch (error) {
       if (error instanceof ConflictException) {
