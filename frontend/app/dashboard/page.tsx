@@ -5,8 +5,13 @@ import { signOut, useSession } from 'next-auth/react';
 export default function Page() {
   const { data: session } = useSession();
 
-  if (!session || session.role !== 'client') {
-    return <p>access denied</p>;
+  if (!session || session.role !== 'admin') {
+    return (
+      <div className='flex flex-col'>
+        <p>/dashboard access denied</p>
+        <Button onClick={() => signOut()}>Sign out</Button>
+      </div>
+    );
   }
 
   return (
