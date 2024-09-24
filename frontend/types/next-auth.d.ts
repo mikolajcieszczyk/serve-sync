@@ -9,6 +9,7 @@ declare module 'next-auth' {
     error?: string;
     accessTokenExpiresAt?: number;
     refreshTokenExpiresAt?: number;
+    role?: string;
   }
 }
 

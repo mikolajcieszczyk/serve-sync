@@ -59,6 +59,7 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<{
     email: string;
+    role: string;
     accessToken: string;
     refreshToken: string;
     accessTokenExpiresAt: number;
@@ -70,12 +71,13 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const payload: JwtPayload = { email: user.email };
+    const payload: JwtPayload = { email: user.email, role: user.role };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '7d' });
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
 
     return {
       email,
+      role: user.role,
       accessToken,
       refreshToken,
       accessTokenExpiresAt: Date.now() + 7 * 24 * 3600 * 1000, // 7 days
@@ -88,7 +90,10 @@ export class AuthService {
   ): Promise<{ accessToken: string; accessTokenExpiresAt: number }> {
     try {
       const payload = this.jwtService.verify(refreshToken);
-      const newPayload: JwtPayload = { email: payload.email };
+      const newPayload: JwtPayload = {
+        email: payload.email,
+        role: payload.role,
+      };
       const accessToken = this.jwtService.sign(newPayload, { expiresIn: '7d' });
 
       return {

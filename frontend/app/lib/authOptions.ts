@@ -25,6 +25,8 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
       ...token,
       accessToken: refreshedTokens.accessToken,
       accessTokenExpiresAt: refreshedTokens.accessTokenExpiresAt,
+      refreshToken: token.refreshToken,
+      userRole: token.userRole,
     };
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -56,11 +58,18 @@ export const authOptions: NextAuthOptions = {
 
         const user = await res.json();
 
+        // eslint-disable-next-line no-console
+        console.log(
+          `🙈 --> file: authOptions.ts:60 --> authorize --> user:`,
+          user
+        );
+
         if (res.ok && user) {
           return {
             ...user,
             accessTokenExpiresAt: user.accessTokenExpiresAt,
             refreshTokenExpiresAt: user.refreshTokenExpiresAt,
+            role: user.role,
           };
         }
         return null;
@@ -74,6 +83,7 @@ export const authOptions: NextAuthOptions = {
         token.refreshToken = user.refreshToken;
         token.accessTokenExpiresAt = user.accessTokenExpiresAt;
         token.refreshTokenExpiresAt = user.refreshTokenExpiresAt;
+        token.userRole = user.role;
         return token;
       }
 
@@ -97,6 +107,8 @@ export const authOptions: NextAuthOptions = {
       session.error = token.error;
       session.accessTokenExpiresAt = token.accessTokenExpiresAt as number;
       session.refreshTokenExpiresAt = token.refreshTokenExpiresAt as number;
+      session.role = token.userRole as string;
+
       return session;
     },
   },
